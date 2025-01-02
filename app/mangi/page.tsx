@@ -20,7 +20,7 @@ export default function Page() {
                 type="text"
                 placeholder="Podaj nazwe mangi"
             />
-
+dsd
         </div>
     </div>
 )
