@@ -43,6 +43,14 @@ export default async function Page() {
                     </button>
 
                 </div>
+                <div
+                    className="text-xs font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
+                    SKUP MANG
+                </div>
+                <div
+                    className="text-xs font-normal text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
+                    0.00 PLN
+                </div>
 
 
             </div>
