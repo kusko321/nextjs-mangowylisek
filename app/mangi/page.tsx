@@ -1,14 +1,8 @@
 import Image from "next/image";
-import fs from 'fs';
-import path from 'path';
+
 
 
 export default async function Page() {
-    const filePath = path.join(process.cwd(), 'public', 'manga.json');
-
-    // Odczyt danych z pliku JSON
-    const jsonData = fs.readFileSync(filePath, 'utf8');
-    const data = JSON.parse(jsonData);
     return (
         <div
             className="nav grid justify-items-center"
@@ -54,15 +48,7 @@ export default async function Page() {
             </div>
             <div className="mt-6 grid">
                 <div className="flex flew-row items-center">
-                    {data.map((item) => (
-                        <div
-                            key={item.id}
-                            style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}
-                        >
-                            <h2>{item.name}</h2>
-                            <p>Genre: {item.genre}</p>
-                        </div>
-                    ))}
+
                 </div>
             </div>
         </div>
