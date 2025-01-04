@@ -4,12 +4,12 @@ import fs from 'fs';
 import path from 'path';
 
 export default async function Page() {
-    let data = [];
+    let data:  Anime[] = [];
 
     try {
         const filePath = path.join(process.cwd(), 'public', 'manga.json');
         const jsonData = fs.readFileSync(filePath, 'utf8');
-        data = JSON.parse(jsonData);
+        data= JSON.parse(jsonData);
     } catch (error) {
         console.error('Error reading JSON file:', error);
     }
@@ -68,7 +68,7 @@ export default async function Page() {
                 <div className="flex flew-row items-center">
                     <div>
                         {data.length > 0 ? (
-                            data.map((item) => (
+                            data.map((item:Anime) => (
                                 <div
                                     key={item.id}
                                     style={{
