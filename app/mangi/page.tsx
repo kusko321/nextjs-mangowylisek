@@ -4,12 +4,20 @@ import fs from 'fs';
 import path from 'path';
 
 export default async function Page() {
-    let data:  Anime[] = [];
-
+    type Anime = {
+        id: number;
+        name: string;
+        stan: string;
+        tom: string;
+        img: string;
+        link: string;
+        price: number;
+    };
+    let data: Anime[] = []
     try {
         const filePath = path.join(process.cwd(), 'public', 'manga.json');
         const jsonData = fs.readFileSync(filePath, 'utf8');
-        data= JSON.parse(jsonData);
+        data = JSON.parse(jsonData);
     } catch (error) {
         console.error('Error reading JSON file:', error);
     }
