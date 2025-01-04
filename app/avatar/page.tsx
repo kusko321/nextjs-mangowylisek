@@ -3,11 +3,14 @@
 import type { PutBlobResult } from '@vercel/blob';
 import { useState, useRef } from 'react';
 
+
 export default function AvatarUploadPage() {
+
     const inputFileRef = useRef<HTMLInputElement>(null);
     const [blob, setBlob] = useState<PutBlobResult | null>(null);
     return (
         <>
+
             <h1>Upload Your Avatar</h1>
 
             <form
