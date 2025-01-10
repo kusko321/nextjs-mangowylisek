@@ -79,9 +79,9 @@ export default function Page() {
                     Ilość Mang: {data.length}
                 </div>
             </div>
-            <div className="mt-6 grid">
+            <div className="mt-6  w-3/4 grid">
                 <div className="flex flew-row items-center">
-                    <div className="flex">
+                    <div className="flex flex-wrap justify-center">
                         {filteredData.length > 0 ? (
                             filteredData.map((item: Anime) => (
                                 <div
