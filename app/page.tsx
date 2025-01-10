@@ -93,7 +93,7 @@ export default function Page() {
                                         <Image
                                             src={item.img}
                                             alt={item.name}
-                                            width={120} // Szerokość obrazka
+                                            width={120} //  obrazka
                                             height={160} // Wysokość obrazka
                                             className="rounded-lg object-cover"
                                         />
