@@ -1,34 +1,51 @@
+"use client";
+
 import Image from "next/image";
+import { useState, useEffect } from "react";
 
-import fs from 'fs';
-import path from 'path';
+type Anime = {
+    id: number;
+    name: string;
+    stan: string;
+    tom: string;
+    img: string;
+    link: string;
+    price: number;
+};
 
-export default async function Page() {
-    type Anime = {
-        id: number;
-        name: string;
-        stan: string;
-        tom: string;
-        img: string;
-        link: string;
-        price: number;
+export default function Page() {
+    const [data, setData] = useState<Anime[]>([]);
+    const [filteredData, setFilteredData] = useState<Anime[]>([]);
+    const [searchQuery, setSearchQuery] = useState("");
+
+    useEffect(() => {
+
+        const fetchData = async () => {
+            try {
+                const response = await fetch("/manga.json");
+                const jsonData = await response.json();
+                setData(jsonData);
+                setFilteredData(jsonData);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        const filtered = data.filter((item) =>
+            item.name.toLowerCase().includes(query)
+        );
+        setFilteredData(filtered);
     };
-    let data: Anime[] = []
-    try {
-        const filePath = path.join(process.cwd(), 'public', 'manga.json');
-        const jsonData = fs.readFileSync(filePath, 'utf8');
-        data = JSON.parse(jsonData);
-    } catch (error) {
-        console.error('Error reading JSON file:', error);
-    }
-    return (
-        <div
-            className="nav grid justify-items-center"
-        >
-            <div
-                className="flex flex-row items-center gap-8"
-            >
 
+    return (
+        <div className="nav grid justify-items-center">
+            <div className="flex flex-row items-center gap-8">
                 <Image
                     src="/mangowy-lisek-logo.png"
                     alt="Mangowy Lisek logo"
@@ -36,21 +53,16 @@ export default async function Page() {
                     height={70}
                     priority
                 />
-                <div
-                    className="flex bg-neutral-800  rounded"
-                >
+                <div className="flex bg-neutral-800 rounded">
                     <input
-                        className=" w-96 rounded-t rounded-b  focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
+                        className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
                         type="text"
-
                         placeholder="Podaj nazwe mangi"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
                     />
-                    <button
-                        className="bg-neutral-950 p-2.5 rounded"
-
-                    >
+                    <button className="bg-neutral-950 p-2.5 rounded">
                         <Image
-
                             className="dark:invert"
                             src="/search.svg"
                             alt="Search"
@@ -59,43 +71,49 @@ export default async function Page() {
                             priority
                         />
                     </button>
-
                 </div>
-                <div
-                    className="text-xs font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
+                <div className="text-xs font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
                     SKUP MANG
                 </div>
-                <div
-                    className="text-xs font-normal text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
+                <div className="text-xs font-normal text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
                     0.00 PLN
                 </div>
-
-
             </div>
             <div className="mt-6 grid">
                 <div className="flex flew-row items-center">
                     <div>
-                        {data.length > 0 ? (
-                            data.map((item:Anime) => (
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item: Anime) => (
                                 <div
                                     key={item.id}
                                     style={{
-                                        border: '1px solid #ccc',
-                                        margin: '10px',
-                                        padding: '10px',
+                                        border: "1px solid #ccc",
+                                        margin: "10px",
+                                        padding: "10px",
                                     }}
                                 >
+                                    <Image
+                                        src={item.img} // Adres URL z Blob Storage
+                                        alt={item.name}
+                                        width={150}
+                                        height={200}
+                                        style={{
+                                            borderRadius: "5px",
+                                            objectFit: "cover",
+                                        }}
+                                    />
                                     <h2>{item.name}</h2>
-                                    <p>stan: {item.stan}</p>
+                                    <p>Stan: {item.stan}</p>
+                                    <p>Tom: {item.tom}</p>
+                                    <p>Cena: {item.price} PLN</p>
                                 </div>
                             ))
                         ) : (
-                            <p>No data available</p>
+                            <p>Brak mang o nazwie: "{searchQuery}"</p>
                         )}
                     </div>
                 </div>
             </div>
         </div>
-
-)
+    );
 }
