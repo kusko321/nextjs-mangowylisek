@@ -72,11 +72,11 @@ export default function Page() {
                         />
                     </button>
                 </div>
-                <div className="text-xs font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
-                    SKUP MANG
+                <div className="text-xs opacity-55 font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
+                    Wkrótce
                 </div>
-                <div className="text-xs font-normal text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
-                    0.00 PLN
+                <div className="text-xs font-normal text-gray-50 bg-amber-600 p-2 rounded hover:bg-amber-900  hover:text-neutral-200">
+                    ilość Mang: {data.length}
                 </div>
             </div>
             <div className="mt-6 grid">
@@ -109,7 +109,7 @@ export default function Page() {
                                 </div>
                             ))
                         ) : (
-                            <p>Brak mang o nazwie: "{searchQuery}"</p>
+                            <p>Brak mang o nazwie: {searchQuery}</p>
                         )}
                     </div>
                 </div>
