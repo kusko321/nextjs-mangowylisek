@@ -1,11 +1,20 @@
 [
   {
     "id": 1,
-    "name": "Dziewczyna do wynajęcia",
+    "name": "Absolutnie doskonały",
     "stan": "Bardzo Dobry",
-    "tom": "1-5",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_6337-CEMkwEK1LsJFHsJO1tQSRXcFeA5QJ5.JPEG",
-    "link": "https://www.vinted.pl/items/5471582091-dziewczyna-o-wynajecia",
-    "price": 78.00
+    "tom": "1",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
+    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
+    "price": 15.00
+  },
+  {
+    "id": 2,
+    "name": "Absolutnie doskonały",
+    "stan": "Bardzo Dobry",
+    "tom": "1",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
+    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
+    "price": 15.00
   }
 ]
