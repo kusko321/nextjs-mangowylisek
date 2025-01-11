@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 type Anime = {
     id: number;
@@ -47,10 +48,10 @@ export default function Page() {
         <div className="grid justify-items-center">
             <div className="flex flex-row items-center gap-8">
                 <Image
-                    src="/mangowy-lisek-logo.png"
+                    src="/mangowy-logo.png"
                     alt="Mangowy Lisek logo"
-                    width={70}
-                    height={70}
+                    width={90}
+                    height={90}
                     priority
                 />
                 <div className="flex bg-neutral-800 rounded">
@@ -79,38 +80,39 @@ export default function Page() {
                     Ilość Mang: {data.length}
                 </div>
             </div>
-            <div className="mt-6  w-3/4 grid">
+            <div className="mt-6  w-10/12 grid">
                 <div className="flex flew-row items-center">
-                    <div className="flex flex-wrap justify-center">
+                    <div className="flex w-full flex-wrap justify-center">
                         {filteredData.length > 0 ? (
                             filteredData.map((item: Anime) => (
                                 <div
                                     key={item.id}
-                                    className="flex items-center m-1 bg-neutral-800 text-white rounded-lg p-2.5 hover:bg-neutral-900"
+                                    className="flex w-3/12 max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
                                 >
-                                    {/* Obrazek po lewej stronie */}
                                     <div className="flex-shrink-0">
                                         <Image
                                             src={item.img}
                                             alt={item.name}
                                             width={120} // Szerokość obrazka
                                             height={160} // Wysokość obrazka
-                                            className="rounded-lg object-cover"
+                                            className="rounded-lg"
                                         />
                                     </div>
-
-                                    {/* Tekst po prawej stronie */}
-                                    <div className="ml-4 flex flex-col justify-between h-full">
+                                    <div className="ml-4 flex flex-col justify-between h-full w-full max-w-prose">
                                         <div>
-                                            <h2 className="text-lg font-semibold">{item.name}</h2>
+                                            <h2 className="text-lg font-semibold max-w-prose">{item.name}</h2>
                                             <p className="text-sm text-gray-400 mt-1">Stan: {item.stan}</p>
                                             <p className="text-sm text-gray-400 mt-1">Tom: {item.tom}</p>
                                         </div>
-                                        <div className="flex justify-between items-center mt-4">
+                                        <div className="flex justify-between items-center mt-4 w-full">
                                             <span className="text-amber-400 text-2xl font-bold">{item.price} PLN</span>
-                                            <button className="bg-teal-800 px-2 py-1 rounded text-white hover:bg-teal-700">
-                                                Vinted
-                                            </button>
+                                            <Link href={item.link}
+                                                  target="_blank"
+                                            >
+                                                <button className="bg-teal-800 px-2 py-1 rounded text-white hover:bg-teal-700">
+                                                    Vinted
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

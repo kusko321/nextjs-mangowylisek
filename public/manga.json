@@ -1,65 +1,47 @@
 [
   {
     "id": 1,
-    "name": "Absolutnie doskonały",
+    "name": "Iruma w szkolnej toalecie",
     "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
+    "tom": "1-3",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Iruma%20w%20szkolnej%20toalecie-QInvKqdZdv0pTvzt51zGX2T0izJjRJ.jpeg",
+    "link": "https://www.vinted.pl/items/5465227208-manga-iruma-w-szkolnej-toalecie-1-3",
+    "price": 45
   },
   {
     "id": 2,
-    "name": "Absolutnie doskonały",
+    "name": "The Labyrinth of the magic",
     "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
+    "tom": "13",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/The%20labyrinth%20of%20the%20magic-ciTvsWMbjfhsxF2lxQ9ZWRC34CDAzA.jpeg",
+    "link": "https://www.vinted.pl/items/5465264832-magi-the-labyrinth-of-the-magic-13",
+    "price": 12
   },
   {
     "id": 3,
-    "name": "Absolutnie doskonały",
+    "name": "Strażnik domu",
     "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
+    "tom": "1-2",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Stra%C5%BCnik%20domu-3FAju4eMIFSNBnKTcIWonCrIZno9UA.jpeg",
+    "link": "https://www.vinted.pl/items/5465256065-manga-straznik-domu-1-2",
+    "price": 25
   },
   {
     "id": 4,
-    "name": "Absolutnie doskonały",
-    "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
+    "name": "Yami No Matsuei",
+    "stan": "Dobry",
+    "tom": "1-4",
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Yami%20No%20Matsuei-XLkDENWFcKJif8ZL8CmX5EDRZfXZi5.jpeg",
+    "price": "48",
+    "link": "https://www.vinted.pl/items/5471576853-yami-no-matsuei-1-4"
   },
   {
     "id": 5,
-    "name": "Absolutnie doskonały",
+    "name": "Golden time",
+    "tom": "6",
     "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
-  },
-  {
-    "id": 6,
-    "name": "Absolutnie doskonały",
-    "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
-  },
-  {
-    "id": 7,
-    "name": "Absolutnie doskonały",
-    "stan": "Bardzo Dobry",
-    "tom": "1",
-    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Absolutnie%20doskonaly-legkFKUtIn6w8XXtEYzHj3FQmi13WM.jpeg",
-    "link": "https://www.vinted.pl/items/5577457692-manga-absolutnie-doskonaly",
-    "price": 15.00
+    "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Golden%20time-fulb6ivhVALRLOKveepzCWPTilDUdx.jpeg",
+    "price": "12",
+    "link": "https://www.vinted.pl/items/5471577030-golden-time-6"
   }
 ]
