@@ -87,7 +87,7 @@ export default function Page() {
                             filteredData.map((item: Anime) => (
                                 <div
                                     key={item.id}
-                                    className="flex w-3/12 max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
+                                    className="flex w-3/12 max-sm:w-full max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
                                 >
                                     <div className="flex-shrink-0">
                                         <Image
