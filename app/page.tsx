@@ -45,7 +45,7 @@ export default function Page() {
     };
 
     return (
-        <div className="grid justify-items-center">
+        <div className="grid  justify-items-center">
             <div className="flex flex-row items-center gap-8">
                 <Image
                     src="/mangowy-logo.png"
@@ -54,7 +54,7 @@ export default function Page() {
                     height={90}
                     priority
                 />
-                <div className="flex bg-neutral-800 rounded">
+                <div className="flex max-[600px]:hidden bg-neutral-800 rounded">
                     <input
                         className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
                         type="text"
@@ -87,7 +87,7 @@ export default function Page() {
                             filteredData.map((item: Anime) => (
                                 <div
                                     key={item.id}
-                                    className="flex w-3/12 max-sm:w-full max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
+                                    className="flex max-[1300px]:w-full w-3/12 max-sm:w-full max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
                                 >
                                     <div className="flex-shrink-0">
                                         <Image

@@ -70,5 +70,14 @@
     "img": "https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/Pok%C3%B3j%20w%20kolorach%20szcz%C4%99%C5%9Bcia-gMGyhEuzpkCijk4v3dD8mLNYRuoMzG.jpeg",
     "price": "78",
     "link": "https://www.vinted.pl/items/5471581507-pokoj-w-kolorach-szczescia-1-5"
-  }
+  },
+  {
+  "id": 9,
+  "name": "test",
+  "tom": "test",
+  "stan": "test",
+  "img": "test",
+  "price": "test",
+  "link": "test"
+}
 ]
