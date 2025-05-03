@@ -11,7 +11,7 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 type Vinted = {
     id: number;
-    id_mang: number | { [key: string]: any };
+    id_mang: number | Record<string, unknown>;
     nazwa: string;
     cena: number;
     zdjecie: string;
