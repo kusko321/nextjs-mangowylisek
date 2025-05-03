@@ -52,35 +52,10 @@ export default function Page() {
         setFilteredData(filtered);
     };
 
-        const [data, setData1] = useState([]);
 
-        useEffect(() => {
-            const fetchData = async () => {
-                const { data, error } = await supabase
-                    .from('mangi')
-                    .select('*');
-                console.log("DANE Z SUPABASE:", data);
-                if (error) {
-                    console.error('Błąd podczas pobierania danych:', error);
-                } else {
-                    setData1(data);
-                }
-            };
-            fetchData();
-        }, []);
     return (
         <div className="grid  justify-items-center">
-            <div>
-                <h1>Dane z tabeli test </h1>
-                <ul>
-                    {data.map((row) => (
-                        <li key={row.id}>
-                            {row.length}
-                            {JSON.stringify(row)}
-                        </li>
-                    ))}
-                </ul>
-            </div>
+
             <div className="flex flex-row items-center gap-8">
                 <Image
                     src="/mangowy-logo.png"
