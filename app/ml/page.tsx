@@ -89,7 +89,8 @@ export default function Page() {
     }, []);
 
     // Formularz js
-    const [aktywnyFormularz, setAktywnyFormularz] = useState(null);
+
+    const [aktywnyFormularz, setAktywnyFormularz] = useState<string | null>(null);
     const zamknijFormularz = () => setAktywnyFormularz(null);
     return(
         <div className="text-white flex w-full flex-col items-center">
