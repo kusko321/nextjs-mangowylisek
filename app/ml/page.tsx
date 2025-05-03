@@ -15,7 +15,7 @@ type magazyn = {
 
 export default function Page() {
     const [data, setData] = useState<magazyn[]>([]);
-    const [sortConfig, setSortConfig] = useState<{ key: keyof magazyn; direction: 'asc' | 'desc' } | null>(null);
+    const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
     const [formData, setFormData] = useState({
         tytul: '',
         tomstart: '',
@@ -50,21 +50,16 @@ export default function Page() {
         const sorted = [...data].sort((a, b) => {
             const aVal = a[key] ?? '';
             const bVal = b[key] ?? '';
-
-            // Sprawdzenie, czy aVal i bVal to stringi
-            if (typeof aVal === 'string' && typeof bVal === 'string') {
+            if (typeof aVal === 'string') {
                 return direction === 'asc'
                     ? aVal.localeCompare(bVal)
                     : bVal.localeCompare(aVal);
             }
-
-            // Jeśli nie są stringami, wykonaj sortowanie liczbowe
-            return direction === 'asc' ? (aVal - bVal) : (bVal - aVal);
+            return direction === 'asc' ? aVal - bVal : bVal - aVal;
         });
 
         setData(sorted);
         setSortConfig({ key, direction });
-
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
