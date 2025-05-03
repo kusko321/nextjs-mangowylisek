@@ -82,7 +82,6 @@ export default function Page() {
                 <ul>
                     {data.map((row) => (
                         <li key={row.id}>
-                            {row.length}
                             {JSON.stringify(row)}
                         </li>
                     ))}
