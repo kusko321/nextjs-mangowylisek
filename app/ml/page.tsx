@@ -41,26 +41,6 @@ export default function Page() {
         fetchData();
     }, []);
 
-    const sortBy = (key: string) => {
-        let direction: 'asc' | 'desc' = 'asc';
-        if (sortConfig?.key === key && sortConfig.direction === 'asc') {
-            direction = 'desc';
-        }
-
-        const sorted = [...data].sort((a, b) => {
-            const aVal = a[key] ?? '';
-            const bVal = b[key] ?? '';
-            if (typeof aVal === 'string') {
-                return direction === 'asc'
-                    ? aVal.localeCompare(bVal)
-                    : bVal.localeCompare(aVal);
-            }
-            return direction === 'asc' ? aVal - bVal : bVal - aVal;
-        });
-
-        setData(sorted);
-        setSortConfig({ key, direction });
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -217,19 +197,19 @@ export default function Page() {
                 <table className="w-full rounded">
                     <thead>
                     <tr className="bg-neutral-900 text-left text-sm">
-                        <th className="p-2 border" onClick={() => sortBy('tytul')}>
+                        <th className="p-2 border">
                             Tytuł
                         </th>
-                        <th className="p-2 border" onClick={() => sortBy('tom')}>
+                        <th className="p-2 border">
                             Tom
                         </th>
-                        <th className="p-2 border" onClick={() => sortBy('kupiona_od')}>
+                        <th className="p-2 border">
                             Kupiona od
                         </th>
-                        <th className="p-2 border" onClick={() => sortBy('data_zakupu')}>
+                        <th className="p-2 border">
                             Data zakupu
                         </th>
-                        <th className="p-2 border" onClick={() => sortBy('cena_zakupu')}>
+                        <th className="p-2 border">
                             Cena zakupu
                         </th>
                         <th className="p-2 border-neutral-600 border">Uwagi</th>
