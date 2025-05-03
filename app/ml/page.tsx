@@ -136,7 +136,7 @@ export default function page() {
                 </div>
             )}
             <div className="flex w-4/5 flex">
-                <span className="bg-neutral-800 m-2 p-1 text-xs rounded"> Mangowy lisek > Stan magazynowy</span>
+                <span className="bg-neutral-800 m-2 p-1 text-xs rounded"> Mangowy lisek &gt; Stan magazynowy</span>
             </div>
 
             <div className="flex w-4/5">
