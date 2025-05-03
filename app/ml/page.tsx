@@ -41,7 +41,7 @@ export default function Page() {
         fetchData();
     }, []);
 
-    const sortBy = (key: keyof magazyn) => {
+    const sortBy = (key: string) => {
         let direction: 'asc' | 'desc' = 'asc';
         if (sortConfig?.key === key && sortConfig.direction === 'asc') {
             direction = 'desc';
@@ -50,12 +50,16 @@ export default function Page() {
         const sorted = [...data].sort((a, b) => {
             const aVal = a[key] ?? '';
             const bVal = b[key] ?? '';
-            if (typeof aVal === 'string') {
+
+            // Sprawdzenie, czy aVal i bVal to stringi
+            if (typeof aVal === 'string' && typeof bVal === 'string') {
                 return direction === 'asc'
                     ? aVal.localeCompare(bVal)
                     : bVal.localeCompare(aVal);
             }
-            return direction === 'asc' ? aVal - bVal : bVal - aVal;
+
+            // Jeśli nie są stringami, wykonaj sortowanie liczbowe
+            return direction === 'asc' ? (aVal - bVal) : (bVal - aVal);
         });
 
         setData(sorted);
