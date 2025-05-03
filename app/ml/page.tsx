@@ -216,7 +216,7 @@ export default function Page() {
                     </thead>
                     <tbody>
                     {data.map((row) => (
-                        <tr key={row.id} name={row.id} className="bg-neutral-800 text-sm">
+                        <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm">
                             <td className="p-2 border-neutral-600 border">{row.tytul}</td>
                             <td className="p-2 border-neutral-600 border">{row.tom}</td>
                             <td className="p-2 border-neutral-600 border">{row.kupiona_od || 'Brak danych'}</td>
