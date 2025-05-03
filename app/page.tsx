@@ -51,30 +51,7 @@ export default function Page() {
         );
         setFilteredData(filtered);
     };
-    type TestRow = {
-        id: number;
-        name: string;
-        date: string;
-        // Dodaj inne pola, które są w tabeli
-    };
 
-    const [data, setData1] = useState<TestRow[]>([]);
-
-        useEffect(() => {
-            const fetchData = async () => {
-                const { data, error } = await supabase
-                    .from('mangi')
-                    .select('*');
-                console.log("DANE Z SUPABASE:", data);
-                if (error) {
-                    console.error('Błąd podczas pobierania danych:', error);
-                } else {
-                    console.log("DANE Z SUPABASE:", data);
-                    setData1(data);
-                }
-            };
-            fetchData();
-        }, []);
     return (
         <div className="grid  justify-items-center">
             <div>
