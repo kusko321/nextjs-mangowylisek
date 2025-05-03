@@ -3,8 +3,14 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { createClient } from '@supabase/supabase-js';
 
-type Anime = {
+const supabaseUrl = 'https://zbsggxpkgwhaoneuxams.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inpic2dneHBrZ3doYW9uZXV4YW1zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDYwNTA3NjIsImV4cCI6MjA2MTYyNjc2Mn0.O3NCcw-Z2gQ_fq-FN07Ne9gBCKcTQaG7JJys6TDRpLE';
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+
+type Manga = {
     id: number;
     name: string;
     stan: string;
@@ -15,8 +21,10 @@ type Anime = {
 };
 
 export default function Page() {
-    const [data, setData] = useState<Anime[]>([]);
-    const [filteredData, setFilteredData] = useState<Anime[]>([]);
+
+
+    const [datamanga, setData] = useState<Manga[]>([]);
+    const [filteredData, setFilteredData] = useState<Manga[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
@@ -38,14 +46,41 @@ export default function Page() {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
 
-        const filtered = data.filter((item) =>
+        const filtered = datamanga.filter((item) =>
             item.name.toLowerCase().includes(query)
         );
         setFilteredData(filtered);
     };
 
+        const [data, setData1] = useState([]);
+
+        useEffect(() => {
+            const fetchData = async () => {
+                const { data, error } = await supabase
+                    .from('test')
+                    .select('*');
+                console.log("DANE Z SUPABASE:", data);
+                if (error) {
+                    console.error('Błąd podczas pobierania danych:', error);
+                } else {
+                    setData1(data);
+                }
+            };
+            fetchData();
+        }, []);
     return (
         <div className="grid  justify-items-center">
+            <div>
+                <h1>Dane z tabeli "test" {data}s</h1>
+                <ul>
+                    {data.map((row) => (
+                        <li key={row.id}>
+                            {row.length}
+                            {JSON.stringify(row)}
+                        </li>
+                    ))}
+                </ul>
+            </div>
             <div className="flex flex-row items-center gap-8">
                 <Image
                     src="/mangowy-logo.png"
@@ -77,14 +112,14 @@ export default function Page() {
                     Wkrótce
                 </div>
                 <div className="text-xs font-normal text-gray-50 bg-amber-600 p-2 rounded hover:bg-amber-900  hover:text-neutral-200">
-                    Ilość Mang: {data.length}
+                    Ilość Mang: {datamanga.length}
                 </div>
             </div>
             <div className="mt-6  w-10/12 grid">
                 <div className="flex flew-row items-center">
                     <div className="flex w-full flex-wrap justify-center">
                         {filteredData.length > 0 ? (
-                            filteredData.map((item: Anime) => (
+                            filteredData.map((item: Manga) => (
                                 <div
                                     key={item.id}
                                     className="flex max-[1300px]:w-full w-3/12 max-sm:w-full max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
