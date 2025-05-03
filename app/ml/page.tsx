@@ -126,7 +126,7 @@ export default function Page() {
       </span>
 
                         <input placeholder="Data Zakupu" name="date" type="date" className="block bg-neutral-600 w-full mb-2 p-2 rounded" onChange={handleChange} />
-                        <input placeholder="Cena za 1 tom" name="cena" type="number" className="block bg-neutral-600 w-full mb-2 p-2 rounded" onChange={handleChange} />
+                        <input placeholder="Cena za 1 tom" name="cena" step="0.01" type="number" className="block bg-neutral-600 w-full mb-2 p-2 rounded" onChange={handleChange} />
                         <input placeholder="Uwagi" name="uwagi" className="block bg-neutral-600 w-full mb-2 p-2 rounded" onChange={handleChange} />
 
                         <button type="submit" className="bg-blue-500 text-white p-2 mr-2 mt-2 rounded">Wyślij</button>
@@ -135,7 +135,7 @@ export default function Page() {
                 </div>
             )}
             <div className="flex w-4/5 flex">
-                <span className="bg-neutral-800 m-2 p-1 text-xs rounded"> Mangowy lisek &gt; Stan magazynowy</span>
+                <span className="bg-neutral-800 m-2 p-1 text-xs rounded"> Mangowy lisek &gt; Stan magazynowy ({data.length} mang)</span>
             </div>
 
             <div className="flex w-4/5">
