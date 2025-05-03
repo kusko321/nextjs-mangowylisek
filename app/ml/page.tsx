@@ -15,7 +15,7 @@ type magazyn = {
 
 export default function Page() {
     const [data, setData] = useState<magazyn[]>([]);
-    const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
+    const [sortConfig, setSortConfig] = useState<{ key: keyof magazyn; direction: 'asc' | 'desc' } | null>(null);
     const [formData, setFormData] = useState({
         tytul: '',
         tomstart: '',
@@ -41,7 +41,7 @@ export default function Page() {
         fetchData();
     }, []);
 
-    const sortBy = (key: string) => {
+    const sortBy = (key: keyof magazyn) => {
         let direction: 'asc' | 'desc' = 'asc';
         if (sortConfig?.key === key && sortConfig.direction === 'asc') {
             direction = 'desc';
@@ -232,7 +232,7 @@ export default function Page() {
                         <th className="p-2 border" onClick={() => sortBy('cena_zakupu')}>
                             Cena zakupu
                         </th>
-                        <th className="p-2 border">Uwagi</th>
+                        <th className="p-2 border-neutral-600 border">Uwagi</th>
                     </tr>
                     </thead>
                     <tbody>
