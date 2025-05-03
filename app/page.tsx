@@ -51,8 +51,14 @@ export default function Page() {
         );
         setFilteredData(filtered);
     };
+    type TestRow = {
+        id: number;
+        name: string;
+        date: string;
+        // Dodaj inne pola, które są w tabeli
+    };
 
-        const [data, setData1] = useState([]);
+    const [data, setData1] = useState<TestRow[]>([]);
 
         useEffect(() => {
             const fetchData = async () => {
