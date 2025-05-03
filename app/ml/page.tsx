@@ -15,7 +15,6 @@ type magazyn = {
 
 export default function Page() {
     const [data, setData] = useState<magazyn[]>([]);
-    const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
     const [formData, setFormData] = useState({
         tytul: '',
         tomstart: '',
