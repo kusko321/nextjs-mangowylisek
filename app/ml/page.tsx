@@ -12,7 +12,7 @@ type magazyn = {
     uwagi: string;
     cena_zakupu: number;
 };
-export default function page() {
+export default function Page() {
     const [formData, setFormData] = useState({
         tytul: '',
         tomstart: '',
@@ -34,7 +34,7 @@ export default function page() {
         const start = parseInt(formData.tomstart);
         const end = parseInt(formData.tomend);
 
-        let rekordy = [];
+        const rekordy = [];
 
         if (!isNaN(end) && end > start) {
             // Wysyłanie wielu rekordów od tomstart do tomend
@@ -61,9 +61,7 @@ export default function page() {
                 czy_sprzedana: false,
             });
         }
-
-        const { data, error } = await supabase.from('mangi').insert(rekordy);
-
+        const {error } = await supabase.from('mangi').insert(rekordy);
         if (error) {
             alert('Błąd: ' + error.message);
         } else {
