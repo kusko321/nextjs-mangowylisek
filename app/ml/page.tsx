@@ -64,6 +64,7 @@ export default function Page() {
 
         setData(sorted);
         setSortConfig({ key, direction });
+
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
