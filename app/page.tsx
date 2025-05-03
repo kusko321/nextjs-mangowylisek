@@ -63,7 +63,7 @@ export default function Page() {
         useEffect(() => {
             const fetchData = async () => {
                 const { data, error } = await supabase
-                    .from('test')
+                    .from('mangi')
                     .select('*');
                 console.log("DANE Z SUPABASE:", data);
                 if (error) {
