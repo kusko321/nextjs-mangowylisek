@@ -78,14 +78,7 @@ export default function Page() {
     return (
         <div className="grid  justify-items-center">
             <div>
-                <h1>Dane z tabeli test </h1>
-                <ul>
-                    {data.map((row) => (
-                        <li key={row.id}>
-                            {JSON.stringify(row)}
-                        </li>
-                    ))}
-                </ul>
+
             </div>
             <div className="flex flex-row items-center gap-8">
                 <Image
