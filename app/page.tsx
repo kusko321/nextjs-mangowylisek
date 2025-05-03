@@ -71,7 +71,7 @@ export default function Page() {
     return (
         <div className="grid  justify-items-center">
             <div>
-                <h1>Dane z tabeli "test" {data}s</h1>
+                <h1>Dane z tabeli test </h1>
                 <ul>
                     {data.map((row) => (
                         <li key={row.id}>
