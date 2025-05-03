@@ -196,19 +196,19 @@ export default function Page() {
                 <table className="w-full rounded">
                     <thead>
                     <tr className="bg-neutral-900 text-left text-sm">
-                        <th className="p-2 border">
+                        <th className="p-2 border-neutral-600 border">
                             Tytuł
                         </th>
-                        <th className="p-2 border">
+                        <th className="p-2 border-neutral-600 border">
                             Tom
                         </th>
-                        <th className="p-2 border">
+                        <th className="p-2 border-neutral-600 border">
                             Kupiona od
                         </th>
-                        <th className="p-2 border">
+                        <th className="p-2 border-neutral-600 border">
                             Data zakupu
                         </th>
-                        <th className="p-2 border">
+                        <th className="p-2 border-neutral-600 border">
                             Cena zakupu
                         </th>
                         <th className="p-2 border-neutral-600 border">Uwagi</th>
@@ -216,7 +216,7 @@ export default function Page() {
                     </thead>
                     <tbody>
                     {data.map((row) => (
-                        <tr key={row.id} className="bg-neutral-800 text-sm">
+                        <tr key={row.id} name={row.id} className="bg-neutral-800 text-sm">
                             <td className="p-2 border-neutral-600 border">{row.tytul}</td>
                             <td className="p-2 border-neutral-600 border">{row.tom}</td>
                             <td className="p-2 border-neutral-600 border">{row.kupiona_od || 'Brak danych'}</td>
