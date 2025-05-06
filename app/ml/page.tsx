@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../api/supabase';
-import { Plus, LayoutList, EllipsisVertical , ChevronDown, BadgeHelp } from 'lucide-react';
+import { Plus, EllipsisVertical , BadgeHelp } from 'lucide-react';
 
 type magazyn = {
     id: number;
