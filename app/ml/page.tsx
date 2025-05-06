@@ -5,12 +5,17 @@ import { Plus, LayoutList, EllipsisVertical , ChevronDown, BadgeHelp } from 'luc
 
 type magazyn = {
     id: number;
+    created_at: string;
     tytul: string;
     tom: number;
     kupiona_od: string;
     data_zakupu: string;
-    uwagi: string;
     cena_zakupu: number;
+    czy_sprzedana: boolean;
+    data_sprzedazy: number;
+    cena_sprzedazy: number;
+    kupujacy: number;
+    uwagi: string;
 };
 
 export default function Page() {
@@ -96,7 +101,7 @@ export default function Page() {
     };
 
     const [aktywnyFormularz, setAktywnyFormularz] = useState<string | null>(null);
-
+    const [statusBazy, setStatusBazy] = useState<'magazyn' | 'sprzedane'>('magazyn');
     const zamknijFormularz = () => setAktywnyFormularz(null);
 
 
@@ -134,9 +139,14 @@ export default function Page() {
     // Filtrowanie ale z sortowanie
     const [searchText, setSearchText] = useState('');
 
-    const filteredData = sortedData.filter((item) =>
-        item.tytul.toLowerCase().includes(searchText.toLowerCase())
-    );
+    const filteredData = sortedData
+        .filter((item) =>
+            item.tytul.toLowerCase().includes(searchText.toLowerCase())
+        )
+        .filter((item) =>
+            statusBazy === 'magazyn' ? item.czy_sprzedana === false : item.czy_sprzedana === true
+        );
+
     return (
         <div className="text-white flex w-full flex-col items-center">
             <div className="flex w-4/5">
@@ -145,9 +155,6 @@ export default function Page() {
                 </button>
                 <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-purple-700 flex p-1 m-2">
                     <Plus strokeWidth={1}/> Sprzedana Manga
-                </button>
-                <button onClick={() => setAktywnyFormularz('vinted')} className="rounded bg-teal-700 flex p-1 m-2">
-                    <Plus strokeWidth={1}/> Oferta Vinted
                 </button>
             </div>
 
@@ -224,19 +231,15 @@ export default function Page() {
                 </div>
             )}
             <div className="flex w-4/5 flex">
-                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
-                   <LayoutList strokeWidth={1} size={20}/> Stan Magzynowy
-                </button>
-                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
-                    <LayoutList strokeWidth={1} size={20}/> Sprzedane Mangi
-                </button>
-                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
-                    <LayoutList strokeWidth={1} size={20}/> Vinted ogloszenie
-                </button>
-            </div>
-            <div className="flex w-4/5 flex">
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
-                    Mangowy lisek &gt; <span className="text-sky-400">Stan magazynowy ({data.length} mang)</span>
+                    Mangowy lisek &gt;
+                    <select
+                        name="status_bazy"
+                        className="text-sky-400 bg-neutral-800"
+                        onChange={(e) => setStatusBazy(e.target.value as 'magazyn' | 'sprzedane')}>
+                        <option value="magazyn">Stan magazynowy ({filteredData.length} mang)</option>
+                        <option value="sprzedane">Sprzedane Mangi ({filteredData.length} mang)</option>
+                    </select>
                 </span>
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
                     Sortowanie Według &gt;
@@ -258,6 +261,7 @@ export default function Page() {
                                 case 'Cenie':
                                     sortBy('cena_zakupu');
                                     break;
+
                                 default:
                                     setSortedData([...data]); // przy "Brak" resetujemy do oryginału
                                     setSortConfig(null);
@@ -269,6 +273,7 @@ export default function Page() {
   <option>Tom</option>
   <option>ID</option>
   <option>Cenie</option>
+
 </select>
                 </span>
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
@@ -288,10 +293,7 @@ export default function Page() {
                 <table className="w-full rounded">
                     <thead>
                         <tr className="bg-neutral-900 text-left text-xs">
-                            <th className="p-2 border-neutral-400 w-[10px] border">
-                                Więcej
-                            </th>
-                            <th className="p-2 border-neutral-400 w-[10px] border">
+                            <th className="p-2 border-neutral-400 text-xs w-[10px] border">
                                 Edytuj
                             </th>
                             <th onClick={() => sortBy('id')}  className="p-2 border-neutral-400 border">
@@ -312,20 +314,35 @@ export default function Page() {
                             <th className="p-2 border-neutral-400 border">
                                 Cena zakupu
                             </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Data sprzedaży
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Cena sprzedaży
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Kupujący
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Zysk
+                            </th>
                             <th className="p-2 border-neutral-400 border">Uwagi</th>
                         </tr>
                     </thead>
                     <tbody>
                     {filteredData.map((row) => (
                         <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm hover:bg-neutral-600 ">
-                            <td className="p-2 border-neutral-400  border"><ChevronDown/></td>
                             <td className="p-2 border-neutral-400 border"><EllipsisVertical/></td>
                             <td className="p-2 border-neutral-400 border">{row.id}</td>
                             <td className="p-2 border-neutral-400 border">{row.tytul}</td>
                             <td className="p-2 border-neutral-400 border">{row.tom}</td>
                             <td className="p-2 border-neutral-400 border">{row.kupiona_od || 'Brak danych'}</td>
                             <td className="p-2 border-neutral-400 border">{row.data_zakupu || '2025-05-01'}</td>
-                            <td className="p-2 border-neutral-400 border">{row.cena_zakupu || '00'} PLN</td>
+                            <td className="p-2 border-neutral-400 border">{row.cena_zakupu || '00'} PLN </td>
+                            <td className="p-2 border-neutral-400 border">{row.data_sprzedazy || 'Nie sprzedana'}</td>
+                            <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy || '00'} PLN </td>
+                            <td className="p-2 border-neutral-400 border">{row.kupujacy || 'Brak'} </td>
+                            <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy - row.cena_zakupu}</td>
                             <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
                         </tr>
                     ))}
