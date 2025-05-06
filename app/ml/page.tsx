@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../api/supabase';
-import { Plus, BadgeHelp } from 'lucide-react';
+import { Plus, LayoutList, EllipsisVertical , ChevronDown, BadgeHelp } from 'lucide-react';
 
 type magazyn = {
     id: number;
@@ -99,17 +99,55 @@ export default function Page() {
 
     const zamknijFormularz = () => setAktywnyFormularz(null);
 
+
+    //Sortowanie
+    useEffect(() => {
+        const sorted = [...data].sort((a, b) => b.id - a.id);
+        setSortedData(sorted);
+    }, [data]);
+    const [sortConfig, setSortConfig] = useState<{ key: keyof typeof data[0], direction: 'asc' | 'desc' } | null>(null);
+    const [sortedData, setSortedData] = useState([...data]); // zakładam, że `data` pochodzi z propsów lub fetcha
+    const sortBy = (key: keyof typeof data[0]) => {
+        let direction: 'asc' | 'desc' = 'asc';
+        if (sortConfig?.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+
+        const sorted = [...sortedData].sort((a, b) => {
+            const aVal = a[key];
+            const bVal = b[key];
+
+            if (typeof aVal === 'string' && typeof bVal === 'string') {
+                return direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+            }
+
+            if (typeof aVal === 'number' && typeof bVal === 'number') {
+                return direction === 'asc' ? aVal - bVal : bVal - aVal;
+            }
+
+            return 0;
+        });
+
+        setSortedData(sorted);
+        setSortConfig({ key, direction });
+    };
+    // Filtrowanie ale z sortowanie
+    const [searchText, setSearchText] = useState('');
+
+    const filteredData = sortedData.filter((item) =>
+        item.tytul.toLowerCase().includes(searchText.toLowerCase())
+    );
     return (
         <div className="text-white flex w-full flex-col items-center">
             <div className="flex w-4/5">
                 <button onClick={() => setAktywnyFormularz('kupiona')} className="rounded bg-sky-700 flex p-1 m-2">
-                    <Plus /> Kupiona Manga
+                    <Plus strokeWidth={1}/> Kupiona Manga
                 </button>
                 <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-purple-700 flex p-1 m-2">
-                    <Plus /> Sprzedana Manga
+                    <Plus strokeWidth={1}/> Sprzedana Manga
                 </button>
                 <button onClick={() => setAktywnyFormularz('vinted')} className="rounded bg-teal-700 flex p-1 m-2">
-                    <Plus /> Oferta Vinted
+                    <Plus strokeWidth={1}/> Oferta Vinted
                 </button>
             </div>
 
@@ -185,44 +223,110 @@ export default function Page() {
                     </form>
                 </div>
             )}
-
             <div className="flex w-4/5 flex">
-                <span className="bg-neutral-800 m-2 p-1 text-xs rounded">
-                    Mangowy lisek &gt; Stan magazynowy ({data.length} mang)
+                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
+                   <LayoutList strokeWidth={1} size={20}/> Stan Magzynowy
+                </button>
+                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
+                    <LayoutList strokeWidth={1} size={20}/> Sprzedane Mangi
+                </button>
+                <button className="flex bg-neutral-800 m-2 p-1 text-s rounded">
+                    <LayoutList strokeWidth={1} size={20}/> Vinted ogloszenie
+                </button>
+            </div>
+            <div className="flex w-4/5 flex">
+                <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
+                    Mangowy lisek &gt; <span className="text-sky-400">Stan magazynowy ({data.length} mang)</span>
+                </span>
+                <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
+                    Sortowanie Według &gt;
+                    <select
+                        className="rounded bg-neutral-800 text-sky-400 ml-1"
+                        name="sort"
+                        onChange={(e) => {
+                            const value = e.target.value;
+                            switch (value) {
+                                case 'ID':
+                                    sortBy('id');
+                                    break;
+                                case 'Tom':
+                                    sortBy('tom');
+                                    break;
+                                case 'Nazwie':
+                                    sortBy('tytul');
+                                    break;
+                                case 'Cenie':
+                                    sortBy('cena_zakupu');
+                                    break;
+                                default:
+                                    setSortedData([...data]); // przy "Brak" resetujemy do oryginału
+                                    setSortConfig(null);
+                            }
+                        }}
+                    >
+  <option>Brak</option>
+  <option>Nazwie</option>
+  <option>Tom</option>
+  <option>ID</option>
+  <option>Cenie</option>
+</select>
+                </span>
+                <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
+                    Szukaj po frazie &gt;
+                    <input
+                        type="text"
+                        name="search_text"
+                        className="rounded bg-neutral-800 text-sky-400"
+                        placeholder="Podaj nazwę"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
                 </span>
             </div>
 
             <div className="flex w-4/5">
                 <table className="w-full rounded">
                     <thead>
-                    <tr className="bg-neutral-900 text-left text-sm">
-                        <th className="p-2 border-neutral-600 border">
-                            Tytuł
-                        </th>
-                        <th className="p-2 border-neutral-600 border">
-                            Tom
-                        </th>
-                        <th className="p-2 border-neutral-600 border">
-                            Kupiona od
-                        </th>
-                        <th className="p-2 border-neutral-600 border">
-                            Data zakupu
-                        </th>
-                        <th className="p-2 border-neutral-600 border">
-                            Cena zakupu
-                        </th>
-                        <th className="p-2 border-neutral-600 border">Uwagi</th>
-                    </tr>
+                        <tr className="bg-neutral-900 text-left text-xs">
+                            <th className="p-2 border-neutral-400 w-[10px] border">
+                                Więcej
+                            </th>
+                            <th className="p-2 border-neutral-400 w-[10px] border">
+                                Edytuj
+                            </th>
+                            <th onClick={() => sortBy('id')}  className="p-2 border-neutral-400 border">
+                                ID
+                            </th>
+                            <th onClick={() => sortBy('tytul')} className="p-2 border-neutral-400 border">
+                                Tytuł
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Tom
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Kupiona od
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Data zakupu
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Cena zakupu
+                            </th>
+                            <th className="p-2 border-neutral-400 border">Uwagi</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    {data.map((row) => (
-                        <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm">
-                            <td className="p-2 border-neutral-600 border">{row.tytul}</td>
-                            <td className="p-2 border-neutral-600 border">{row.tom}</td>
-                            <td className="p-2 border-neutral-600 border">{row.kupiona_od || 'Brak danych'}</td>
-                            <td className="p-2 border-neutral-600 border">{row.data_zakupu || '2025-05-01'}</td>
-                            <td className="p-2 border-neutral-600 border">{row.cena_zakupu || '00'} PLN</td>
-                            <td className="p-2 border-neutral-600 border">{row.uwagi}</td>
+                    {filteredData.map((row) => (
+                        <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm hover:bg-neutral-600 ">
+                            <td className="p-2 border-neutral-400  border"><ChevronDown/></td>
+                            <td className="p-2 border-neutral-400 border"><EllipsisVertical/></td>
+                            <td className="p-2 border-neutral-400 border">{row.id}</td>
+                            <td className="p-2 border-neutral-400 border">{row.tytul}</td>
+                            <td className="p-2 border-neutral-400 border">{row.tom}</td>
+                            <td className="p-2 border-neutral-400 border">{row.kupiona_od || 'Brak danych'}</td>
+                            <td className="p-2 border-neutral-400 border">{row.data_zakupu || '2025-05-01'}</td>
+                            <td className="p-2 border-neutral-400 border">{row.cena_zakupu || '00'} PLN</td>
+                            <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
                         </tr>
                     ))}
                     </tbody>
