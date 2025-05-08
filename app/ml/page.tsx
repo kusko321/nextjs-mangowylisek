@@ -428,57 +428,70 @@ export default function Page() {
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
                                             </span>
-                                            <input
-                                                type="date"
-                                                value={edytowanyRekord.data_zakupu}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_zakupu: e.target.value })}
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="number"
-                                                step="0.01"
-                                                value={edytowanyRekord.cena_zakupu}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_zakupu: parseFloat(e.target.value) })}
-                                                placeholder="Cena zakupu"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="date"
-                                                value={edytowanyRekord.data_sprzedazy || ''}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_sprzedazy: e.target.value })}
-                                                placeholder="Data sprzedaży"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="number"
-                                                step="0.01"
-                                                value={edytowanyRekord.cena_sprzedazy || 0}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_sprzedazy: parseFloat(e.target.value) })}
-                                                placeholder="Cena sprzedaży"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={edytowanyRekord.kupujacy || ''}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, kupujacy: e.target.value })}
-                                                placeholder="Kupujący"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={edytowanyRekord.uwagi || ''}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, uwagi: e.target.value })}
-                                                placeholder="Uwagi"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="text"
-                                                value={edytowanyRekord.zdjecie || ''}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, zdjecie: e.target.value })}
-                                                placeholder="Link do zdjęcia"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-
+                                            <span className="flex flex-col">Data Zakupu
+                                                <input
+                                                    type="date"
+                                                    value={edytowanyRekord.data_zakupu}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_zakupu: e.target.value })}
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Cena Zakupu
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    value={edytowanyRekord.cena_zakupu}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_zakupu: parseFloat(e.target.value) })}
+                                                    placeholder="Cena zakupu"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Data Sprzedaży
+                                                <input
+                                                    type="date"
+                                                    value={edytowanyRekord.data_sprzedazy || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_sprzedazy: e.target.value })}
+                                                    placeholder="Data sprzedaży"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Cena Sprzedaży
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    value={edytowanyRekord.cena_sprzedazy || 0}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_sprzedazy: parseFloat(e.target.value) })}
+                                                    placeholder="Cena sprzedaży"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Kupujacy
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.kupujacy || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, kupujacy: e.target.value })}
+                                                    placeholder="Kupujący"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Uwagi
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.uwagi || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, uwagi: e.target.value })}
+                                                    placeholder="Uwagi"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Zdjecie
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.zdjecie || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, zdjecie: e.target.value })}
+                                                    placeholder="Link do zdjęcia"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
                                             <div className="flex gap-2 col-span-full justify-end">
                                                 <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
                                                     Zapisz zmiany
