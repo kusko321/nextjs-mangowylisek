@@ -157,9 +157,17 @@ export default function Page() {
 
     const handleUpdate = async (updatedData: Partial<magazyn>) => {
         if (!edytowanyRekord) return;
+
+        const updatedValues = {
+            ...updatedData,
+            ...(updatedData.cena_sprzedazy && updatedData.cena_sprzedazy > 0.01
+                ? { czy_sprzedana: true }
+                : {})
+        };
+
         const { error } = await supabase
             .from('mangi')
-            .update(updatedData)
+            .update(updatedValues)
             .eq('id', edytowanyRekord.id);
 
         if (error) {
@@ -167,8 +175,12 @@ export default function Page() {
         } else {
             alert('Zaktualizowano rekord');
             setEdytowanyRekord(null);
-            // odśwież dane
-            const { data } = await supabase.from('mangi').select('*').order('created_at', { ascending: false });
+
+            const { data } = await supabase
+                .from('mangi')
+                .select('*')
+                .order('created_at', { ascending: false });
+
             setData(data ?? []);
         }
     };
