@@ -410,20 +410,24 @@ export default function Page() {
                                             e.preventDefault();
                                             handleUpdate(edytowanyRekord);
                                         }} className="grid grid-cols-1 w-full md:grid-cols-2 gap-2">
-                                            <input
-                                                type="text"
-                                                value={edytowanyRekord.tytul}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tytul: e.target.value })}
-                                                placeholder="Tytuł"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
-                                            <input
-                                                type="number"
-                                                value={edytowanyRekord.tom}
-                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tom: parseInt(e.target.value) })}
-                                                placeholder="Tom"
-                                                className="bg-neutral-700 p-2 rounded"
-                                            />
+                                            <span className="flex flex-col">Tytuł
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.tytul}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tytul: e.target.value })}
+                                                    placeholder="Tytuł"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Tom
+                                                <input
+                                                    type="number"
+                                                    value={edytowanyRekord.tom}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tom: parseInt(e.target.value) })}
+                                                    placeholder="Tom"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
                                             <input
                                                 type="date"
                                                 value={edytowanyRekord.data_zakupu}
