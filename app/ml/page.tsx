@@ -1,7 +1,7 @@
 'use client';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { supabase } from '../api/supabase';
-import { Plus, BadgeHelp, Pencil, DollarSign } from 'lucide-react';
+import { Plus, BadgeHelp, Pencil } from 'lucide-react';
 
 type magazyn = {
     id: number;
@@ -360,7 +360,7 @@ export default function Page() {
                         </tr>
                     </thead>
                     <tbody>
-                    {filteredData.map((row,index) => (
+                    {filteredData.map((row) => (
                         <React.Fragment key={row.id}>
                             <tr className="odd:bg-neutral-700 even:bg-neutral-800">
                                 <td className="p-2 border-neutral-400 border">{row.id}</td>
