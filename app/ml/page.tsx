@@ -12,9 +12,9 @@ type magazyn = {
     data_zakupu: string;
     cena_zakupu: number;
     czy_sprzedana: boolean;
-    data_sprzedazy: number;
+    data_sprzedazy: string;
     cena_sprzedazy: number;
-    kupujacy: number;
+    kupujacy: string;
     uwagi: string;
     zdjecie: string;
 };
