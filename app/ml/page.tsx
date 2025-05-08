@@ -1,7 +1,7 @@
 'use client';
-import { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { supabase } from '../api/supabase';
-import { Plus, BadgeHelp } from 'lucide-react';
+import { Plus, BadgeHelp, Pencil, DollarSign } from 'lucide-react';
 
 type magazyn = {
     id: number;
@@ -151,21 +151,34 @@ export default function Page() {
         .filter((item) =>
             statusBazy === 'magazyn' ? item.czy_sprzedana === false : item.czy_sprzedana === true
         );
+    // Edytowanie rekordow sell/edit
 
+    const [edytowanyRekord, setEdytowanyRekord] = useState<magazyn | null>(null);
+
+    const handleUpdate = async (updatedData: Partial<magazyn>) => {
+        if (!edytowanyRekord) return;
+        const { error } = await supabase
+            .from('mangi')
+            .update(updatedData)
+            .eq('id', edytowanyRekord.id);
+
+        if (error) {
+            alert('Błąd podczas aktualizacji: ' + error.message);
+        } else {
+            alert('Zaktualizowano rekord');
+            setEdytowanyRekord(null);
+            // odśwież dane
+            const { data } = await supabase.from('mangi').select('*').order('created_at', { ascending: false });
+            setData(data ?? []);
+        }
+    };
     return (
         <div className="text-white flex w-full flex-col items-center">
             <div className="flex w-4/5">
                 <button onClick={() => setAktywnyFormularz('kupiona')} className="rounded bg-sky-700 flex p-1 m-2">
                     <Plus strokeWidth={1}/> Kupiona Manga
                 </button>
-                <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-purple-700 flex p-1 m-2">
-                    <Plus strokeWidth={1}/> Sprzedana Manga
-                </button>
-                <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-orange-700 flex p-1 m-2">
-                    <Plus strokeWidth={1}/> Edytuj Mange
-                </button>
             </div>
-
             {aktywnyFormularz === 'kupiona' && (
                 <div className=" p-4 bg-neutral-800 rounded">
                     <h2 className="text-lg font-semibold mb-2">Dodaj mangę</h2>
@@ -305,9 +318,9 @@ export default function Page() {
             </div>
 
             <div className="flex w-4/5">
-                <table className="w-full rounded">
+                <table className="w-full rounded text-[12px]">
                     <thead>
-                        <tr className="bg-neutral-900 text-left text-xs">
+                        <tr className="bg-neutral-900 text-left">
                             <th onClick={() => sortBy('id')}  className="p-2 border-neutral-400 border">
                                 ID
                             </th>
@@ -347,32 +360,130 @@ export default function Page() {
                         </tr>
                     </thead>
                     <tbody>
-                    {filteredData.map((row) => (
-                        <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm hover:bg-neutral-600 ">
-                            <td className="p-2 border-neutral-400 border">{row.id}</td>
-                            <td className="p-2 border-neutral-400 border">{row.tytul}</td>
-                            <td className="p-2 border-neutral-400 border">{row.tom}</td>
-                            <td className="p-2 border-neutral-400 border">{row.kupiona_od || 'Brak danych'}</td>
-                            <td className="p-2 border-neutral-400 border">{row.data_zakupu || '2025-05-01'}</td>
-                            <td className="p-2 border-neutral-400 border">{row.cena_zakupu || '00'} PLN </td>
-                            <td className="p-2 border-neutral-400 border">{row.data_sprzedazy || 'Nie sprzedana'}</td>
-                            <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy || '00'} PLN </td>
-                            <td className="p-2 border-neutral-400 border">{row.kupujacy || 'Brak'} </td>
-                            <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy - row.cena_zakupu}</td>
-                            <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
-                            <td className="p-2 border-neutral-400 border">
-                                {row.zdjecie ? (
+                    {filteredData.map((row,index) => (
+                        <React.Fragment key={row.id}>
+                            <tr className="odd:bg-neutral-700 even:bg-neutral-800">
+                                <td className="p-2 border-neutral-400 border">{row.id}</td>
+                                <td className="p-2 border-neutral-400 border">{row.tytul}</td>
+                                <td className="p-2 border-neutral-400 border">{row.tom}</td>
+                                <td className="p-2 border-neutral-400 border">{row.kupiona_od || "Brak"}</td>
+                                <td className="p-2 border-neutral-400 border">{row.data_zakupu}</td>
+                                <td className="p-2 border-neutral-400 border">{row.cena_zakupu} PLN</td>
+                                <td className="p-2 border-neutral-400 border">{row.data_sprzedazy || '❌'} </td>
+                                <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy || '0'}  PLN</td>
+                                <td className="p-2 border-neutral-400 border">{row.kupujacy|| '❌'}</td>
+                                <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy ? `${row.cena_sprzedazy} PLN` : '❌'}</td>
+                                <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
+                                <td className="p-2 border-neutral-400 max-w-[20px] border">{row.zdjecie ? (
                                     <a href={row.zdjecie} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
                                         Zobacz zdjęcie
                                     </a>
                                 ) : (
                                     'Brak'
-                                )}
-                            </td>
-                        </tr>
+                                )}</td>
+
+                                <td className="p-2 border-neutral-400 border">
+                                    <button onClick={() => setEdytowanyRekord(row)}>
+                                        <Pencil size={14} strokeWidth={1.5} />
+                                    </button>
+                                </td>
+
+                            </tr>
+
+                            {/* Formularz edycji w nowym <tr> jeśli to ten rekord */}
+                            {edytowanyRekord?.id === row.id && (
+                                <tr className="bg-neutral-900">
+                                    <td colSpan={13} className="p-4 border-t border-neutral-600">
+                                        <form onSubmit={(e) => {
+                                            e.preventDefault();
+                                            handleUpdate(edytowanyRekord);
+                                        }} className="grid grid-cols-1 w-full md:grid-cols-2 gap-2">
+                                            <input
+                                                type="text"
+                                                value={edytowanyRekord.tytul}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tytul: e.target.value })}
+                                                placeholder="Tytuł"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="number"
+                                                value={edytowanyRekord.tom}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, tom: parseInt(e.target.value) })}
+                                                placeholder="Tom"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="date"
+                                                value={edytowanyRekord.data_zakupu}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_zakupu: e.target.value })}
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                value={edytowanyRekord.cena_zakupu}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_zakupu: parseFloat(e.target.value) })}
+                                                placeholder="Cena zakupu"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="date"
+                                                value={edytowanyRekord.data_sprzedazy || ''}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, data_sprzedazy: e.target.value })}
+                                                placeholder="Data sprzedaży"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="number"
+                                                step="0.01"
+                                                value={edytowanyRekord.cena_sprzedazy || 0}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_sprzedazy: parseFloat(e.target.value) })}
+                                                placeholder="Cena sprzedaży"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="text"
+                                                value={edytowanyRekord.kupujacy || ''}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, kupujacy: e.target.value })}
+                                                placeholder="Kupujący"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="text"
+                                                value={edytowanyRekord.uwagi || ''}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, uwagi: e.target.value })}
+                                                placeholder="Uwagi"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+                                            <input
+                                                type="text"
+                                                value={edytowanyRekord.zdjecie || ''}
+                                                onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, zdjecie: e.target.value })}
+                                                placeholder="Link do zdjęcia"
+                                                className="bg-neutral-700 p-2 rounded"
+                                            />
+
+                                            <div className="flex gap-2 col-span-full justify-end">
+                                                <button type="submit" className="bg-green-600 text-white px-4 py-2 rounded">
+                                                    Zapisz zmiany
+                                                </button>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setEdytowanyRekord(null)}
+                                                    className="bg-gray-600 text-white px-4 py-2 rounded"
+                                                >
+                                                    Anuluj
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            )}
+                        </React.Fragment>
                     ))}
                     </tbody>
                 </table>
+
             </div>
         </div>
     );
