@@ -1,7 +1,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { supabase } from '../api/supabase';
-import { Plus, EllipsisVertical , BadgeHelp } from 'lucide-react';
+import { Plus, BadgeHelp } from 'lucide-react';
 
 type magazyn = {
     id: number;
@@ -16,6 +16,7 @@ type magazyn = {
     cena_sprzedazy: number;
     kupujacy: number;
     uwagi: string;
+    zdjecie: string;
 };
 
 export default function Page() {
@@ -28,6 +29,7 @@ export default function Page() {
         date: '',
         cena: '',
         uwagi: '',
+        zdjecie: '',
     });
 
     useEffect(() => {
@@ -69,6 +71,7 @@ export default function Page() {
                     cena_zakupu: parseFloat(formData.cena) || 0,
                     uwagi: formData.uwagi,
                     czy_sprzedana: false,
+                    zdjecie: formData.zdjecie,
                 });
             }
         } else {
@@ -80,6 +83,7 @@ export default function Page() {
                 cena_zakupu: parseFloat(formData.cena) || 0,
                 uwagi: formData.uwagi,
                 czy_sprzedana: false,
+                zdjecie: formData.zdjecie,
             });
         }
 
@@ -96,6 +100,7 @@ export default function Page() {
                 date: '',
                 cena: '',
                 uwagi: '',
+                zdjecie: '',
             });
         }
     };
@@ -155,6 +160,9 @@ export default function Page() {
                 </button>
                 <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-purple-700 flex p-1 m-2">
                     <Plus strokeWidth={1}/> Sprzedana Manga
+                </button>
+                <button onClick={() => setAktywnyFormularz('sprzedana')} className="rounded bg-orange-700 flex p-1 m-2">
+                    <Plus strokeWidth={1}/> Edytuj Mange
                 </button>
             </div>
 
@@ -216,6 +224,11 @@ export default function Page() {
                             name="uwagi"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
                             onChange={handleChange}
+                        /><input
+                            placeholder="Zdjecie"
+                            name="zdjecie"
+                            className="block bg-neutral-600 w-full mb-2 p-2 rounded"
+                            onChange={handleChange}
                         />
                         <button type="submit" className="bg-blue-500 text-white p-2 mr-2 mt-2 rounded">
                             Wyślij
@@ -235,7 +248,7 @@ export default function Page() {
                     Mangowy lisek &gt;
                     <select
                         name="status_bazy"
-                        className="text-sky-400 bg-neutral-800"
+                        className="text-orange-400 bg-neutral-800"
                         onChange={(e) => setStatusBazy(e.target.value as 'magazyn' | 'sprzedane')}>
                         <option value="magazyn">Stan magazynowy ({filteredData.length} mang)</option>
                         <option value="sprzedane">Sprzedane Mangi ({filteredData.length} mang)</option>
@@ -244,7 +257,7 @@ export default function Page() {
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
                     Sortowanie Według &gt;
                     <select
-                        className="rounded bg-neutral-800 text-sky-400 ml-1"
+                        className="rounded bg-neutral-800 text-orange-400 ml-1"
                         name="sort"
                         onChange={(e) => {
                             const value = e.target.value;
@@ -258,10 +271,12 @@ export default function Page() {
                                 case 'Nazwie':
                                     sortBy('tytul');
                                     break;
-                                case 'Cenie':
+                                case 'Cenie kupna':
                                     sortBy('cena_zakupu');
                                     break;
-
+                                case 'Cenie sprzedaży':
+                                    sortBy('cena_sprzedazy');
+                                    break;
                                 default:
                                     setSortedData([...data]); // przy "Brak" resetujemy do oryginału
                                     setSortConfig(null);
@@ -272,8 +287,8 @@ export default function Page() {
   <option>Nazwie</option>
   <option>Tom</option>
   <option>ID</option>
-  <option>Cenie</option>
-
+  <option>Cenie kupna</option>
+  <option>Cenie sprzedaży</option>
 </select>
                 </span>
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
@@ -281,7 +296,7 @@ export default function Page() {
                     <input
                         type="text"
                         name="search_text"
-                        className="rounded bg-neutral-800 text-sky-400"
+                        className="rounded bg-neutral-800 text-orange-400 ml-1"
                         placeholder="Podaj nazwę"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
@@ -293,9 +308,6 @@ export default function Page() {
                 <table className="w-full rounded">
                     <thead>
                         <tr className="bg-neutral-900 text-left text-xs">
-                            <th className="p-2 border-neutral-400 text-xs w-[10px] border">
-                                Edytuj
-                            </th>
                             <th onClick={() => sortBy('id')}  className="p-2 border-neutral-400 border">
                                 ID
                             </th>
@@ -326,13 +338,17 @@ export default function Page() {
                             <th className="p-2 border-neutral-400 border">
                                 Zysk
                             </th>
-                            <th className="p-2 border-neutral-400 border">Uwagi</th>
+                            <th className="p-2 border-neutral-400 border">
+                                Uwagi
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Zdjecie
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                     {filteredData.map((row) => (
                         <tr key={row.id} data-tom={row.id} className="bg-neutral-800 text-sm hover:bg-neutral-600 ">
-                            <td className="p-2 border-neutral-400 border"><EllipsisVertical/></td>
                             <td className="p-2 border-neutral-400 border">{row.id}</td>
                             <td className="p-2 border-neutral-400 border">{row.tytul}</td>
                             <td className="p-2 border-neutral-400 border">{row.tom}</td>
@@ -344,6 +360,15 @@ export default function Page() {
                             <td className="p-2 border-neutral-400 border">{row.kupujacy || 'Brak'} </td>
                             <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy - row.cena_zakupu}</td>
                             <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
+                            <td className="p-2 border-neutral-400 border">
+                                {row.zdjecie ? (
+                                    <a href={row.zdjecie} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                                        Zobacz zdjęcie
+                                    </a>
+                                ) : (
+                                    'Brak'
+                                )}
+                            </td>
                         </tr>
                     ))}
                     </tbody>
