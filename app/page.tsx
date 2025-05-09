@@ -296,7 +296,7 @@ export default function Page() {
                     nastepny
                 </div>
 
-                <div className="flex flex-col items-center text-sm   border-neutral-700 w-full ">
+                <div className="flex flex-col items-center text-sm border-neutral-700 w-full max-[600px]:text-[10px] max-[600px]:tracking-[-0.075em] ">
                     <div className="border-b border-neutral-700 w-full p-2 flex flex-nowrap items-center place-content-between ">
                         <div className="w-1/12">
                             <Image
