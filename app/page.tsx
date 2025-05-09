@@ -64,7 +64,7 @@ export default function Page() {
 
     return (
         <div className="grid justify-items-center">
-            <div className="flex flex-row items-center gap-8">
+            <div className="flex flex-row items-center gap-2">
 
                 <Image
                     src="/mangowy-logo.png"
