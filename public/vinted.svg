@@ -1,12 +1,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg width="800px" height="800px" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
+<svg width="800px" height="800px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" fill="#000000">
 <g id="SVGRepo_bgCarrier" stroke-width="0"/>
 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier">
-<defs>
-<style>.a{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width:1px;}</style>
-</defs>
-<path class="a" d="M16.23,5.82c4.69-.69,5.11,2.25,5,5.36,0,15,.24,24.84.82,25.37,4.07-9.75,7.45-25.5,9.45-28.34A10.2,10.2,0,0,1,34,5.72c1.2-.76,2.57-1.48,2.91-1.12-.14,4.52-8,30.84-8.37,31.8A12.09,12.09,0,0,1,21.65,43c-6.39,1.52-6.82-.87-7.63-2.21-1.89-4.1-3.25-28.36-2.78-31C11.34,8.77,11.56,6.11,16.23,5.82Z"/>
-</g>
+<g id="SVGRepo_iconCarrier"> <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="15" stroke-width="12"> <path d="M50.238 37.67c-2.755 35.056 5.454 102.65 10.204 121.69m0 0c3.204 11.958 24.991 15.612 41.854 1.504m.004.006c22.004-20.527 22.726-53.965 45.439-134.68m-.009-.006c1.766-6.592-2.701-3.395-2.701-3.395-5.883 3.397-5.329 3.899-6.135 4.705m.006 0c-1.128 1.128-3.417 1.34-3.417 1.34-1.512 0-2.62 1.562-2.62 1.562m-.003 0c-12.953 12.953-24.494 69.177-33.362 95.376-2.14 7.983-8.33 19.848-8.33 19.848-3.141-8.374-3.681-92.493-3.681-92.493" style="paint-order:markers stroke fill"/> <path d="M87.49 53.127c0-5.2.453-9.836.453-9.836m0 0c.438-21.124-12.821-17.704-22.559-17.087M50.238 37.67c0-2.079 2.415-8.055 15.145-11.466" style="paint-order:markers stroke fill"/> </g> </g>
 </svg>

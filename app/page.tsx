@@ -65,6 +65,7 @@ export default function Page() {
     return (
         <div className="grid justify-items-center">
             <div className="flex flex-row items-center gap-8">
+
                 <Image
                     src="/mangowy-logo.png"
                     alt="Mangowy Lisek logo"
@@ -72,16 +73,27 @@ export default function Page() {
                     height={90}
                     priority
                 />
-                <Image src="/tiktok.svg"
-                       alt="TikTok - @MangowyLisek"
-                       width={24}
-                       height={24}
-                />
-                <Image src="/instagram.svg"
-                       alt="Instagram - @MangowyLisek"
-                       width={24}
-                       height={24}
-                />
+                <Link href="https://www.tiktok.com/@mangowylisek" target="_blank">
+                    <Image src="/tiktok.svg"
+                           alt="TikTok - @MangowyLisek"
+                           width={24}
+                           height={24}
+                    />
+                </Link>
+                <Link href="https://www.instagram.com/mangowylisek/" target="_blank">
+                    <Image src="/instagram.svg"
+                           alt="Instagram - @MangowyLisek"
+                           width={24}
+                           height={24}
+                    />
+                </Link>
+                <Link href="https://www.vinted.pl/member/217332029" target="_blank">
+                    <Image src="/vinted.svg"
+                           alt="Vinted - mangowylisek"
+                           width={24}
+                           height={24}
+                    />
+                </Link>
                 <div className="text-xs opacity-55 font-extralight text-gray-50 bg-neutral-800 p-2 rounded hover:bg-neutral-700 hover:text-neutral-200">
                     Wkrótce
                 </div>
@@ -255,27 +267,27 @@ export default function Page() {
                         <p className="text-white">Brak mang o nazwie: {searchQuery}</p>
                         )}
 
-                    <div className="">
-                        <div className="flex max-[600px]:hidden bg-neutral-800 rounded">
-                            <input
-                                className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
-                                type="text"
-                                placeholder="Podaj nazwę mangi"
-                                value={searchQuery}
-                                onChange={handleSearchChange}
-                            />
-                            <button className="bg-neutral-950 p-2.5 rounded">
-                                <Image
-                                    className="dark:invert"
-                                    src="/search.svg"
-                                    alt="Szukaj"
-                                    width={16}
-                                    height={16}
-                                    priority
-                                />
-                            </button>
-                        </div>
-                    </div>
+                </div>
+            </div>
+            <div className="">
+                <div className="flex max-[600px]:hidden bg-neutral-800 rounded">
+                    <input
+                        className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
+                        type="text"
+                        placeholder="Podaj nazwę mangi"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    />
+                    <button className="bg-neutral-950 p-2.5 rounded">
+                        <Image
+                            className="dark:invert"
+                            src="/search.svg"
+                            alt="Szukaj"
+                            width={16}
+                            height={16}
+                            priority
+                        />
+                    </button>
                 </div>
             </div>
         </div>
