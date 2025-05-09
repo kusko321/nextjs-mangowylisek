@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { supabase } from "@/app/api/supabase";
+import { Star, StarHalf } from 'lucide-react';
 import * as React from "react"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
@@ -64,7 +65,7 @@ export default function Page() {
 
     return (
         <div className="grid justify-items-center">
-            <div className="flex flex-row items-center gap-2">
+            <div className="flex flex-row items-center gap-8 max-[600px]:gap-2">
 
                 <Image
                     src="/mangowy-logo.png"
@@ -269,25 +270,172 @@ export default function Page() {
 
                 </div>
             </div>
-            <div className="">
-                <div className="flex max-[600px]:hidden bg-neutral-800 rounded">
-                    <input
-                        className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
-                        type="text"
-                        placeholder="Podaj nazwę mangi"
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                    <button className="bg-neutral-950 p-2.5 rounded">
-                        <Image
-                            className="dark:invert"
-                            src="/search.svg"
-                            alt="Szukaj"
-                            width={16}
-                            height={16}
-                            priority
+            <div className="w-10/12 ">
+
+                <div className="mt-2 flex flex-wrap items-center text-sm pt-2 pb-2 border-t border-b border-neutral-700 w-full ">
+                    sorotwanie
+                    <div className="flex max-[600px]:hidden rounded">
+                        <input
+                            className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
+                            type="text"
+                            placeholder="Podaj nazwę mangi"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
                         />
-                    </button>
+                        <button className="bg-neutral-950 p-2.5 rounded">
+                            <Image
+                                className="dark:invert"
+                                src="/search.svg"
+                                alt="Szukaj"
+                                width={16}
+                                height={16}
+                                priority
+                            />
+                        </button>
+                    </div>
+                    nastepny
+                </div>
+
+                <div className="flex flex-col items-center text-sm   border-neutral-700 w-full ">
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - Tom 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w paczce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - To323m 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w pa3232czce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - To323m 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w pa3232czce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - To323m 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w pa3232czce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - To323m 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w pa3232czce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+                    <div className="border-b border-neutral-700 w-full p-2 flex flex-wrap items-center place-content-between ">
+                        <div className="w-1/12">
+                            <Image
+                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                                alt="Manga "
+                                width={45}
+                                height={60}
+                                className="rounded-lg"
+                            />
+                        </div>
+                        <div className="flex-col flex ml-1 w-2/4">
+                            <span>Haikyuu!! - To323m 1</span>
+                            <span className="text-neutral-500">Możliwość zakupu w pa3232czce: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
+                        </div>
+                        <div className="flex-col flex ml-1 w-1/4">
+                            <span className="flex-wrap flex pb-1"><Star size={18}/><Star size={18}/><Star size={18}/><Star size={18}/><StarHalf size={18}/></span>
+                            <span className="text-neutral-500">Stan wizualny</span>
+                        </div>
+                        <div className="flex-col flex ml-1 1/5">
+                            <span className="flex-wrap flex pb-1">10 PLN</span>
+                            <span className="text-neutral-500">Cena za szt.</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
