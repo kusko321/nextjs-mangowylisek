@@ -4,7 +4,26 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { supabase } from "@/app/api/supabase";
+import React from "react"
+import "./styles.css"
+import { useKeenSlider, KeenSliderPlugin } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
 
+const carousel: KeenSliderPlugin = (slider) => {
+    const z = 300
+    function rotate() {
+        const deg = 360 * slider.track.details.progress
+        slider.container.style.transform = `translateZ(-${z}px) rotateY(${-deg}deg)`
+    }
+    slider.on("created", () => {
+        const deg = 360 / slider.slides.length
+        slider.slides.forEach((element, idx) => {
+            element.style.transform = `rotateY(${deg * idx}deg) translateZ(${z}px)`
+        })
+        rotate()
+    })
+    slider.on("detailsChanged", rotate)
+}
 
 
 type Vinted = {
@@ -18,6 +37,17 @@ type Vinted = {
 };
 
 export default function Page() {
+
+    const [sliderRef] = useKeenSlider<HTMLDivElement>(
+        {
+            loop: true,
+            selector: ".carousel__cell",
+            renderMode: "custom",
+            mode: "free-snap",
+        },
+        [carousel]
+    )
+
     const [vintedData, setVintedData] = useState<Vinted[]>([]);
     const [filteredData, setFilteredData] = useState<Vinted[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
@@ -82,7 +112,86 @@ export default function Page() {
                     Ilość Mang: {vintedData.length}
                 </div>
             </div>
+            <div className="mt-6 p-6 w-10/12 grid bg-neutral-800 rounded-xl">
+                <div className="text-3xl font-bold mb-1">Promocje</div>
+                <div className="text-xs ">Nawet 80% taniej niż cena katalogowa</div>
+                <div className="flex flex-row mt-1 place-content-center items-center text-center">
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div className="flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
 
+                </div>
+
+            </div>
             <div className="mt-6 w-10/12 grid">
                 <div className="flex flex-row items-center">
                     <div className="flex w-full flex-wrap justify-center">
@@ -120,6 +229,23 @@ export default function Page() {
                         ) : (
                             <p className="text-white">Brak mang o nazwie: {searchQuery}</p>
                         )}
+                    </div>
+                </div>
+            </div>
+            https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg
+            <div className="wrapper">
+                <div className="scene">
+                    <div className="carousel keen-slider" ref={sliderRef}>
+                        <div className="carousel__cell number-slide1">1</div>
+                        <div className="carousel__cell number-slide2">2</div>
+                        <div className="carousel__cell number-slide3">3</div>
+                        <div className="carousel__cell number-slide4">4</div>
+                        <div className="carousel__cell number-slide5">5</div>
+                        <div className="carousel__cell number-slide6">6</div>
+                        <div className="carousel__cell number-slide6">7</div>
+                        <div className="carousel__cell number-slide6">8</div>
+
+
                     </div>
                 </div>
             </div>
