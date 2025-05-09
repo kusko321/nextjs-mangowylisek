@@ -302,6 +302,12 @@ export default function Page() {
                                 case 'Cenie sprzedaży':
                                     sortBy('cena_sprzedazy');
                                     break;
+                                case 'Data kupna':
+                                    sortBy('data_zakupu');
+                                    break;
+                                case 'Data sprzedaży':
+                                    sortBy('data_sprzedazy');
+                                    break;
                                 default:
                                     setSortedData([...data]); // przy "Brak" resetujemy do oryginału
                                     setSortConfig(null);
@@ -314,6 +320,8 @@ export default function Page() {
   <option>ID</option>
   <option>Cenie kupna</option>
   <option>Cenie sprzedaży</option>
+  <option>Data kupna</option>
+  <option>Data sprzedaży</option>
 </select>
                 </span>
                 <span className="bg-neutral-800 m-2 p-1 text-sm rounded">
@@ -361,9 +369,6 @@ export default function Page() {
                                 Kupujący
                             </th>
                             <th className="p-2 border-neutral-400 border">
-                                Zysk
-                            </th>
-                            <th className="p-2 border-neutral-400 border">
                                 Uwagi
                             </th>
                             <th className="p-2 border-neutral-400 border">
@@ -384,7 +389,6 @@ export default function Page() {
                                 <td className="p-2 border-neutral-400 border">{row.data_sprzedazy || '❌'} </td>
                                 <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy || '0'}  PLN</td>
                                 <td className="p-2 border-neutral-400 border">{row.kupujacy|| '❌'}</td>
-                                <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy ? `${row.cena_sprzedazy} PLN` : '❌'}</td>
                                 <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
                                 <td className="p-2 border-neutral-400 max-w-[20px] border">{row.zdjecie ? (
                                     <a href={row.zdjecie} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
