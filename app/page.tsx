@@ -26,6 +26,13 @@ export default function Page() {
 
         slides: { perView: "auto",spacing: 10 },
     })
+    const [refVinted] = useKeenSlider<HTMLDivElement>({
+        loop: false,
+        mode: "free-snap",
+        rtl: false,
+
+        slides: { perView: "auto",spacing: 10 },
+    })
 
     const [vintedData, setVintedData] = useState<Vinted[]>([]);
     const [filteredData, setFilteredData] = useState<Vinted[]>([]);
@@ -95,7 +102,7 @@ export default function Page() {
                 <div className="text-3xl font-bold mb-1">Promocje</div>
                 <div className="text-xs ">Nawet 80% taniej niż cena katalogowa</div>
                 <div ref={ref} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -107,7 +114,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -119,7 +126,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -131,7 +138,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -143,7 +150,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -155,7 +162,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -167,7 +174,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -179,7 +186,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -191,7 +198,7 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -203,7 +210,19 @@ export default function Page() {
                         <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
                         <div className="flex text-sm ">5,00 PLN</div>
                     </div>
-                    <div style={{ maxWidth: 200, minWidth: 200 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                        <Image
+                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
+                            alt="Manga "
+                            width={180}
+                            height={240}
+                            className="rounded-lg"
+                        />
+                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
+                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
+                        <div className="flex text-sm ">5,00 PLN</div>
+                    </div>
+                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                         <Image
                             src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
                             alt="Manga "
@@ -219,47 +238,35 @@ export default function Page() {
                 </div>
 
             </div>
-            <div className="mt-6 w-10/12 grid">
-                <div className="flex flex-row items-center">
-                    <div className="flex w-full flex-wrap justify-center">
-                        {filteredData.length > 0 ? (
-                            filteredData.map((item) => (
-                                <div
-                                    key={item.id}
-                                    className="flex max-[1300px]:w-full w-3/12 max-sm:w-full max-w-prose items-center m-1 bg-neutral-800 text-white rounded-lg p-2 hover:bg-neutral-900"
-                                >
-                                    <div className="flex-shrink-0">
-                                        <Image
-                                            src={item.zdjecie}
-                                            alt={item.nazwa}
-                                            width={120}
-                                            height={160}
-                                            className="rounded-lg"
-                                        />
-                                    </div>
-                                    <div className="ml-4 flex flex-col justify-between h-full w-full max-w-prose">
-                                        <div>
-                                            <h2 className="text-lg font-semibold">{item.nazwa}</h2>
-                                            <p className="text-sm text-gray-400 mt-1">Tom: {item.tom}</p>
-                                        </div>
-                                        <div className="flex justify-between items-center mt-4 w-full">
-                                            <span className="text-amber-400 text-2xl font-bold">{item.cena} PLN</span>
-                                            <Link href={item.link} target="_blank">
-                                                <button className="bg-teal-800 px-2 py-1 rounded text-white hover:bg-teal-700">
-                                                    Vinted
-                                                </button>
-                                            </Link>
-                                        </div>
-                                    </div>
+            <div className="mt-6 p-6 w-10/12 grid bg-neutral-800 rounded-xl">
+                <div className="text-3xl font-bold mb-1">Zestawy Vinted</div>
+                <div className="text-xs ">Kupuj taniej w zestawie! Za pośrednictwem Vinted</div>
+
+                <div ref={refVinted} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
+                    {filteredData.length > 0 ? (
+                        filteredData.map((item) => (
+                            <Link key={item.id}  href={item.link} target="_blank">
+                                <div style={{ maxWidth: 210, minWidth: 210 }} className="keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
+                                    <Image
+                                        src={item.zdjecie}
+                                        alt={item.nazwa}
+                                        width={180}
+                                        height={240}
+                                        className="rounded-lg"
+                                    />
+                                    <div className="flex mt-1 text-sm">{item.nazwa} - Tom {item.tom}</div>
+                                    <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>70 PLN - Cena katalogowa</s></div>
+                                    <div className="flex text-sm ">{item.cena} PLN</div>
                                 </div>
-                            ))
-                        ) : (
-                            <p className="text-white">Brak mang o nazwie: {searchQuery}</p>
+                            </Link>)
+                        ))
+                            : (
+                        <p className="text-white">Brak mang o nazwie: {searchQuery}</p>
                         )}
-                    </div>
+
+
                 </div>
             </div>
-
         </div>
     );
 }
