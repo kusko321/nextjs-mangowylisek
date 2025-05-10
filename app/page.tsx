@@ -62,10 +62,6 @@ export default function Page() {
     const [sklepData, setSklepData] = useState<Sklep[]>([]);
     const [magazynData, setMagazynData] = useState<Magazyn[]>([]);
 
-
-    // const [filteredData, setFilteredData] = useState<Vinted[]>([]);
-    const [searchQuery, setSearchQuery] = useState("");
-
     useEffect(() => {
         const fetchSklepData = async () => {
             const { data, error } = await supabase.from('sklep').select('*');
@@ -102,16 +98,6 @@ export default function Page() {
         };
         fetchMagazynData();
     }, []);
-    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const query = e.target.value.toLowerCase();
-        setSearchQuery(query);
-
-        const filtered = vintedData.filter(item =>
-            item.nazwa.toLowerCase().includes(query)
-        );
-        setFilteredData(filtered);
-    };
-
     return (
         <div className="grid justify-items-center">
             <div className="flex flex-row items-center gap-8 max-[600px]:gap-2">
@@ -319,25 +305,6 @@ export default function Page() {
                     <select className="text-white bg-neutral-800 rounded-lg p-1">
                         <option>Test</option>
                     </select>
-                    <div className="flex max-[600px]:hidden rounded">
-                        <input
-                            className="w-96 rounded-t rounded-b focus:border-teal-500 focus:outline-none placeholder-neutral-600 text-gray-50 bg-neutral-800 p-1.5"
-                            type="text"
-                            placeholder="Podaj nazwę mangi"
-                            value={searchQuery}
-                            onChange={handleSearchChange}
-                        />
-                        <button className="bg-neutral-950 p-2.5 rounded">
-                            <Image
-                                className="dark:invert"
-                                src="/search.svg"
-                                alt="Szukaj"
-                                width={16}
-                                height={16}
-                                priority
-                            />
-                        </button>
-                    </div>
                     <div className="flex flex-nowrap items-center text-center">
                         <button className="mr-2 bg-neutral-700 p-1.5 rounded-lg"><ChevronLeft strokeWidth={1.25}/> </button>
                         <span className="p-1">1</span>
