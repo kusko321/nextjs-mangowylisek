@@ -45,7 +45,12 @@ type Magazyn = {
 export default function Page() {
 
 
-
+    const [ref] = useKeenSlider<HTMLDivElement>({
+        loop: false,
+        mode: "free-snap",
+        rtl: false,
+        slides: { perView: "auto",spacing: 10 },
+    })
     const [refVinted] = useKeenSlider<HTMLDivElement>({
         loop: false,
         mode: "free-snap",
@@ -57,10 +62,6 @@ export default function Page() {
     const [sklepData, setSklepData] = useState<Sklep[]>([]);
     const [promocjaData, setpromocjaData] = useState<Sklep[]>([]);
     const [magazynData, setMagazynData] = useState<Magazyn[]>([]);
-    useEffect(() => {
-        sliderInstance?.update();
-    }, [promocjaData]);
-
     useEffect(() => {
         const fetchPromcjaData = async () => {
             const { data, error } = await supabase.from('sklep').select('*').eq('promocja', true);
@@ -109,15 +110,6 @@ export default function Page() {
         };
         fetchMagazynData();
     }, []);
-
-    const [sliderInstance, setSliderInstance] = useState<any>(null);
-
-    const [sliderRef] = useKeenSlider<HTMLDivElement>({
-        loop: false,
-        mode: "snap",
-        slides: { perView: "auto", spacing: 10 },
-        created: (slider) => setSliderInstance(slider),
-    });
     return (
         <div className="grid justify-items-center">
             <div className="flex flex-row items-center gap-8 max-[600px]:gap-2">
@@ -160,7 +152,7 @@ export default function Page() {
             <div className="mt-6 p-6 w-10/12 grid bg-neutral-800 rounded-xl">
                 <div className="text-3xl font-bold mb-1">Promocje</div>
                 <div className="text-xs ">Nawet 80% taniej niż cena katalogowa</div>
-                <div ref={sliderRef} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
+                <div ref={ref} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
                     {promocjaData.map((item) => {
                         const manga = magazynData.find((m) => m.id === item.id_mangi);
                         if (!manga) return null;
