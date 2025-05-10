@@ -44,13 +44,8 @@ type Magazyn = {
 
 export default function Page() {
 
-    const [ref] = useKeenSlider<HTMLDivElement>({
-        loop: false,
-        mode: "free-snap",
-        rtl: false,
 
-        slides: { perView: "auto",spacing: 10 },
-    })
+
     const [refVinted] = useKeenSlider<HTMLDivElement>({
         loop: false,
         mode: "free-snap",
@@ -60,8 +55,24 @@ export default function Page() {
 
     const [vintedData, setVintedData] = useState<Vinted[]>([]);
     const [sklepData, setSklepData] = useState<Sklep[]>([]);
+    const [promocjaData, setpromocjaData] = useState<Sklep[]>([]);
     const [magazynData, setMagazynData] = useState<Magazyn[]>([]);
+    useEffect(() => {
+        sliderInstance?.update();
+    }, [promocjaData]);
 
+    useEffect(() => {
+        const fetchPromcjaData = async () => {
+            const { data, error } = await supabase.from('sklep').select('*').eq('promocja', true);
+            if (error) {
+                console.error('Błąd podczas pobierania danych:', error);
+            } else {
+                setpromocjaData(data || []);
+
+            }
+        };
+        fetchPromcjaData();
+    }, []);
     useEffect(() => {
         const fetchSklepData = async () => {
             const { data, error } = await supabase.from('sklep').select('*');
@@ -98,6 +109,15 @@ export default function Page() {
         };
         fetchMagazynData();
     }, []);
+
+    const [sliderInstance, setSliderInstance] = useState<any>(null);
+
+    const [sliderRef] = useKeenSlider<HTMLDivElement>({
+        loop: false,
+        mode: "snap",
+        slides: { perView: "auto", spacing: 10 },
+        created: (slider) => setSliderInstance(slider),
+    });
     return (
         <div className="grid justify-items-center">
             <div className="flex flex-row items-center gap-8 max-[600px]:gap-2">
@@ -140,140 +160,28 @@ export default function Page() {
             <div className="mt-6 p-6 w-10/12 grid bg-neutral-800 rounded-xl">
                 <div className="text-3xl font-bold mb-1">Promocje</div>
                 <div className="text-xs ">Nawet 80% taniej niż cena katalogowa</div>
-                <div ref={ref} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
-                    <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
-                        <Image
-                            src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                            alt="Manga "
-                            width={180}
-                            height={240}
-                            className="rounded-lg"
-                        />
-                        <div className="flex mt-1 text-sm">Hayiku!! - Tom 1  </div>
-                        <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>23,99 PLN - Cena katalogowa</s></div>
-                        <div className="flex text-sm ">5,00 PLN</div>
-                    </div>
+                <div ref={sliderRef} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
+                    {promocjaData.map((item) => {
+                        const manga = magazynData.find((m) => m.id === item.id_mangi);
+                        if (!manga) return null;
+                        return (
+                            <Link style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg" href="/sklep" key={item.id}>
+                                <Image
+                                    src={manga.zdjecie}
+                                    alt={manga.tytul}
+                                    width={180}
+                                    height={240}
+                                    className="rounded-lg"
+                                />
+                                <div className="flex mt-1 text-sm">{manga.tytul} - Tom {manga.tom}  </div>
+                                <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>{item.cena_katalogowa} PLN - Cena katalogowa</s></div>
+                                <div className="flex text-sm ">{item.cena_sprzedazy} PLN</div>
+                            </Link>
 
+
+
+                        );
+                    })}
                 </div>
 
             </div>
