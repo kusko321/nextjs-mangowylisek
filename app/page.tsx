@@ -17,6 +17,30 @@ type Vinted = {
     tom: string;
     link: string;
 };
+type Sklep = {
+    id: number;
+    id_mangi: number;
+    cena_katalogowa: number;
+    cena_sprzedazy: number
+    promocja: boolean;
+    stan: number;
+    tagi: string;
+};
+type Magazyn = {
+    id: number;
+    created_at: string;
+    tytul: string;
+    tom: number;
+    kupiona_od: string;
+    data_zakupu: string;
+    cena_zakupu: number;
+    czy_sprzedana: boolean;
+    data_sprzedazy: string;
+    cena_sprzedazy: number;
+    kupujacy: string;
+    uwagi: string;
+    zdjecie: string;
+};
 
 export default function Page() {
 
@@ -31,14 +55,29 @@ export default function Page() {
         loop: false,
         mode: "free-snap",
         rtl: false,
-
         slides: { perView: "auto",spacing: 10 },
     })
 
     const [vintedData, setVintedData] = useState<Vinted[]>([]);
-    const [filteredData, setFilteredData] = useState<Vinted[]>([]);
+    const [sklepData, setSklepData] = useState<Sklep[]>([]);
+    const [magazynData, setMagazynData] = useState<Magazyn[]>([]);
+
+
+    // const [filteredData, setFilteredData] = useState<Vinted[]>([]);
     const [searchQuery, setSearchQuery] = useState("");
 
+    useEffect(() => {
+        const fetchSklepData = async () => {
+            const { data, error } = await supabase.from('sklep').select('*');
+            if (error) {
+                console.error('Błąd podczas pobierania danych:', error);
+            } else {
+                setSklepData(data || []);
+
+            }
+        };
+        fetchSklepData();
+    }, []);
     useEffect(() => {
         const fetchVintedData = async () => {
             const { data, error } = await supabase.from('vinted').select('*');
@@ -46,13 +85,23 @@ export default function Page() {
                 console.error('Błąd podczas pobierania danych:', error);
             } else {
                 setVintedData(data || []);
-                setFilteredData(data || []);
+
             }
         };
-
         fetchVintedData();
     }, []);
+    useEffect(() => {
+        const fetchMagazynData = async () => {
+            const { data, error } = await supabase.from('mangi').select('*');
+            if (error) {
+                console.error('Błąd podczas pobierania danych:', error);
+            } else {
+                setMagazynData(data || []);
 
+            }
+        };
+        fetchMagazynData();
+    }, []);
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const query = e.target.value.toLowerCase();
         setSearchQuery(query);
@@ -247,8 +296,7 @@ export default function Page() {
                 <div className="text-xs ">Kupuj taniej w zestawie! Za pośrednictwem Vinted</div>
 
                 <div ref={refVinted} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
-                    {filteredData.length > 0 ? (
-                        filteredData.map((item) => (
+                    {vintedData.map((item) => (
                             <Link key={item.id}  href={item.link} target="_blank">
                                 <div style={{ maxWidth: 210, minWidth: 210 }} className="keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                                     <Image
@@ -263,15 +311,10 @@ export default function Page() {
                                     <div className="flex text-sm ">{item.cena} PLN</div>
                                 </div>
                             </Link>)
-                        ))
-                            : (
-                        <p className="text-white">Brak mang o nazwie: {searchQuery}</p>
-                        )}
-
+                    )}
                 </div>
             </div>
             <div className="w-10/12 ">
-
                 <div className="mt-2 flex flex-nowrap items-center place-content-between text-sm pt-2 pb-2 border-t border-b border-neutral-700 w-full ">
                     <select className="text-white bg-neutral-800 rounded-lg p-1">
                         <option>Test</option>
@@ -302,80 +345,42 @@ export default function Page() {
                         <span className="p-1">6</span>
                         <button className="ml-2 bg-neutral-700 p-1.5 rounded-lg"><ChevronRight strokeWidth={1.25}/> </button>
                     </div>
-
                 </div>
-
                 <div className="flex flex-col items-center text-sm border-neutral-700 w-full max-[600px]:text-[10px] max-[600px]:tracking-[-0.075em] ">
-                    <div className="border-b border-neutral-700 w-full p-2 flex flex-nowrap items-center place-content-between ">
-                        <div className="w-1/12">
-                            <Image
-                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                                alt="Manga "
-                                width={45}
-                                height={60}
-                                className="rounded-lg"
-                            />
-                        </div>
-                        <div className="flex-col flex ml-1 w-2/4">
-                            <span>Haikyuu!! - Tom 1</span>
-                            <span className="text-neutral-500">Możliwość zakupu w pacze: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
-                        </div>
-                        <div className="flex-col flex ml-1 w-1/4">
-                            <span className="flex-wrap flex pb-1"><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><StarHalf size={18} strokeWidth={1.25}/></span>
-                            <span className="text-neutral-500">Stan wizualny</span>
-                        </div>
-                        <div className="flex-col flex ml-1 1/5">
-                            <span className="flex-wrap flex pb-1">10 PLN</span>
-                            <span className="text-neutral-500">Cena za szt.</span>
-                        </div>
-                    </div>
-                    <div className="border-b border-neutral-700 w-full p-2 flex flex-nowrap items-center place-content-between ">
-                        <div className="w-1/12">
-                            <Image
-                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                                alt="Manga "
-                                width={45}
-                                height={60}
-                                className="rounded-lg"
-                            />
-                        </div>
-                        <div className="flex-col flex ml-1 w-2/4">
-                            <span>Haikyuu!! - Tom 1</span>
-                            <span className="text-neutral-500">Możliwość zakupu w pacze: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
-                        </div>
-                        <div className="flex-col flex ml-1 w-1/4">
-                            <span className="flex-wrap flex pb-1"><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><StarHalf size={18} strokeWidth={1.25}/></span>
-                            <span className="text-neutral-500">Stan wizualny</span>
-                        </div>
-                        <div className="flex-col flex ml-1 1/5">
-                            <span className="flex-wrap flex pb-1">10 PLN</span>
-                            <span className="text-neutral-500">Cena za szt.</span>
-                        </div>
-                    </div>
-                    <div className="border-b border-neutral-700 w-full p-2 flex flex-nowrap items-center place-content-between ">
-                        <div className="w-1/12">
-                            <Image
-                                src="https://s5u7yrgbcfphwffz.public.blob.vercel-storage.com/IMG_7264_batcheditor_fotor_batcheditor_fotor-WDagzbfQBVTDLqKejQAyqEXsplcxn7.jpg"
-                                alt="Manga "
-                                width={45}
-                                height={60}
-                                className="rounded-lg"
-                            />
-                        </div>
-                        <div className="flex-col flex ml-1 w-2/4">
-                            <span>Haikyuu!! - Tom 1</span>
-                            <span className="text-neutral-500">Możliwość zakupu w pacze: Haikyuu! - Tom 1-3 | Komplet sportówek</span>
-                        </div>
-                        <div className="flex-col flex ml-1 w-1/4">
-                            <span className="flex-wrap flex pb-1"><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><Star size={18} strokeWidth={1.25}/><StarHalf size={18} strokeWidth={1.25}/></span>
-                            <span className="text-neutral-500">Stan wizualny</span>
-                        </div>
-                        <div className="flex-col flex ml-1 1/5">
-                            <span className="flex-wrap flex pb-1">10 PLN</span>
-                            <span className="text-neutral-500">Cena za szt.</span>
-                        </div>
-                    </div>
-
+                {sklepData.map((item) => {
+                    const manga = magazynData.find((m) => m.id === item.id_mangi);
+                    if (!manga) return null;
+                    return (
+                        <Link className="border-b border-neutral-700 w-full p-2 flex flex-nowrap items-center place-content-between " key={item.id} href="/sklep" target="_blank">
+                                <div className="w-1/12">
+                                    <Image
+                                        src={manga.zdjecie}
+                                        alt={manga.tytul}
+                                        width={45}
+                                        height={60}
+                                        className="rounded-lg"
+                                    />
+                                </div>
+                                <div className="flex-col flex ml-1 w-2/4">
+                                    <span>{manga.tytul} - Tom {manga.tom}</span>
+                                    <span className="text-neutral-500">Możliwość zakupu w pacze: WKROTCE!</span>
+                                </div>
+                                <div className="flex-col flex ml-1 w-1/4">
+                                            <span className="flex-wrap flex pb-1">
+                                                {[...Array(Math.floor(item.stan))].map((_, i) => (
+                                                    <Star key={i} size={18} strokeWidth={1.25} />
+                                                ))}
+                                                {item.stan % 1 !== 0 && <StarHalf size={18} strokeWidth={1.25} />}
+                                            </span>
+                                    <span className="text-neutral-500">Stan wizualny</span>
+                                </div>
+                                <div className="flex-col flex ml-1 1/5">
+                                    <span className="flex-wrap flex pb-1">10 PLN</span>
+                                    <span className="text-neutral-500">Cena za szt.</span>
+                                </div>
+                        </Link>
+                    );
+                })}
                 </div>
             </div>
         </div>
