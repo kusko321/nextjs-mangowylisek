@@ -157,7 +157,7 @@ export default function Page() {
                         const manga = magazynData.find((m) => m.id === item.id_mangi);
                         if (!manga) return null;
                         return (
-                            <Link style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg" key={item.id}>
+                            <div style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg" key={item.id}>
                                 <Image
                                     src={manga.zdjecie}
                                     alt={manga.tytul}
@@ -168,7 +168,7 @@ export default function Page() {
                                 <div className="flex mt-1 text-sm">{manga.tytul} - Tom {manga.tom}  </div>
                                 <div className="flex mt-4 text-sm text-neutral-500 whitespace-nowrap"><s>{item.cena_katalogowa} PLN - Cena katalogowa</s></div>
                                 <div className="flex text-sm ">{item.cena_sprzedazy} PLN</div>
-                            </Link>
+                            </div>
 
 
 
