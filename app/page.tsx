@@ -230,7 +230,7 @@ export default function Page() {
                                 </div>
                                 <div className="flex-col flex ml-1 w-2/4">
                                     <span>{manga.tytul} - Tom {manga.tom}</span>
-                                    <span className="text-neutral-500">Możliwość zakupu w pacze: WKROTCE!</span>
+                                    <span className="text-neutral-500">Możliwość zakupu w pacze: WKRÓTCE!</span>
                                 </div>
                                 <div className="flex-col flex ml-1 w-1/4">
                                             <span className="flex-wrap flex pb-1">
