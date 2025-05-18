@@ -1,0 +1,1 @@
+export const DESCOPE_PROJECT_ID = process.env.DESCOPE_PROJECT_ID!;

@@ -242,7 +242,7 @@ export default function Page() {
                                     <span className="text-neutral-500">Stan wizualny</span>
                                 </div>
                                 <div className="flex-col flex ml-1 1/5">
-                                    <span className="flex-wrap flex pb-1">10 PLN</span>
+                                    <span className="flex-wrap flex pb-1">{item.cena_sprzedazy} PLN</span>
                                     <span className="text-neutral-500">Cena za szt.</span>
                                 </div>
                         </Link>

@@ -1,6 +1,6 @@
 'use client';
 import React, {useEffect, useState } from 'react';
-import { supabase } from '../api/supabase';
+import { supabase } from '../../api/supabase';
 import { Plus, BadgeHelp, Pencil } from 'lucide-react';
 
 type magazyn = {
