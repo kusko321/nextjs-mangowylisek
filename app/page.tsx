@@ -157,7 +157,7 @@ export default function Page() {
                         const manga = magazynData.find((m) => m.id === item.id_mangi);
                         if (!manga) return null;
                         return (
-                            <Link style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg" href="/sklep" key={item.id}>
+                            <Link style={{ maxWidth: 210, minWidth: 210 }} className="w-min-[200px] keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg" key={item.id}>
                                 <Image
                                     src={manga.zdjecie}
                                     alt={manga.tytul}
