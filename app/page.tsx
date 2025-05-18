@@ -183,7 +183,7 @@ export default function Page() {
 
                 <div ref={refVinted} className="flex flex-row keen-slider mt-1 place-content-center items-center text-center">
                     {vintedData.map((item) => (
-                            <Link key={item.id}  href={item.link} target="_blank">
+                            <Link key={item.id} href={item.link} target="_blank">
                                 <div style={{ maxWidth: 210, minWidth: 210 }} className="keen-slider__slide flex flex-col m-2 p-3 hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-800 rounded-lg">
                                     <Image
                                         src={item.zdjecie}
