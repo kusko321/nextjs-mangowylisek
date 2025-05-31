@@ -165,9 +165,9 @@ export default function Home() {
             <div className="m-2">
                 <div className="flex flex-col w-[300px] text-3xl font-black text-center border-1 rounded-xl bg-orange-600 p-5">
                     <span className="">BON</span>
-                    <span className="text-xs font-light">na wybranie miasta do którego jedziemy</span>
+                    <span className="text-xs font-light">Na wybranie miasta do którego jedziemy!</span>
                     <div className="text-xs font-light m-3">
-                        Zaplanuj dobrze gdzie jedziemy oraz mozesz wybrac atrakcje cena do ustalenia ^^
+                        Zaplanuj dobrze gdzie jedziemy! Możesz wybrać atrakcje! Cena do ustalenia ^^
                     </div>
                 </div>
             </div>
