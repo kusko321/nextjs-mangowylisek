@@ -146,7 +146,7 @@ export default function Page() {
                     Wkrótce
                 </div>
                 <div className="text-xs font-normal text-gray-50 bg-amber-600 p-2 rounded hover:bg-amber-900 hover:text-neutral-200">
-                    Ilość Mang: {vintedData.length}
+                    Ilość Mang: {sklepData.length}
                 </div>
             </div>
             <div className="mt-6 p-6 w-10/12 grid bg-neutral-800 rounded-xl">

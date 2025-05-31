@@ -24,7 +24,7 @@ export default function Page() {
                             <span className="p-1 text-orange-700">Sklep</span>
                         </div>
                     </Link>
-                    <Link href='mangowy/magazyn' className='place-content-center flex flex-col w-1/4 m-2 p-3 max-[600px]:w-full hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-950 rounded-lg'>
+                    <Link href='mangowy/statystyki' className='place-content-center flex flex-col w-1/4 m-2 p-3 max-[600px]:w-full hover:border-neutral-950 hover:shadow-lg hover:shadow-orange-900/10 border border-neutral-950 rounded-lg'>
                         <div className="place-content-center flex flex-row text-xl"> <ChartLine size={30} strokeWidth={1}/> <span className="pl-3">Statystyki</span></div>
                         <div className="place-content-center flex flex-row text-xs mt-3">
                             <span className="p-1 text-orange-500">Statystyki miesiaca</span>
