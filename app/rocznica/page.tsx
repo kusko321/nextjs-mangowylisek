@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import * as React from "react";
 import {Plane} from 'lucide-react';
 export default function Home() {
