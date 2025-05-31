@@ -6,7 +6,7 @@ export default function Home() {
         <div className="grid justify-items-center font-sans ">
             <span className="text-2xl m-5 font-black">Podróż z okazji rocznicy </span>
             <div className="m-5 text-lg">
-                Piątek 20 Czerwca
+                pt. 20 Czerwca
             </div>
             <div className="w-[300px] flex-col flex text-xs font-semibold bg-amber-200 text-neutral-950 rounded-lg p-5">
                 <span>- Wstanie i przygotowanie do odjazdu </span>
@@ -37,7 +37,7 @@ export default function Home() {
                 <span>- Spanko </span>
             </div>
             <div className="m-5 text-lg">
-                Sobota 21 Czerwca
+                sob. 21 Czerwca
             </div>
             <div className="w-[300px] flex-col flex text-xs font-semibold bg-amber-200 text-neutral-950 rounded-lg p-5">
                 <span>- Wstanie i przygotowanie do odjazdu </span>
@@ -98,7 +98,7 @@ export default function Home() {
             </div>
             <div className="m-2">
                 <div className="rounded-t-xl p-1 flex flex-row  items-center justify-center bg-[url(/zadarmiasto.jpg)] bg-cover bg-center w-[300px] h-[120px] text-3xl font-black text-center border-1 rounded-4">
-                    <span className="p-3 text-amber-500">ZAD</span>
+                    <span className="p-3 ">ZAD</span>
                 </div>
                 <div className="bg-neutral-950 rounded-b-xl p-1 break-words w-[300px] p-3 border-t border-dashed border-neutral-50">
                     <div className="pl-3 flex flex-col mt-3 mt-5 tracking-tight">
@@ -118,7 +118,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="m-5 text-lg">
-                Niedziela 22 - Czwartek 26 Czerwca
+                nd. 22 - czw. 26 Czerwca
             </div>
             <div className="w-[300px] flex-col flex text-xs font-semibold bg-amber-200 text-neutral-950 rounded-lg p-5">
                 <span>- Zwiedzanie Zadaru  </span>
@@ -157,9 +157,10 @@ export default function Home() {
             <div className="w-[300px] flex-col flex text-xs font-semibold bg-amber-200 text-neutral-950 rounded-lg p-5">
                 <span>- Przylot do Rzesowa </span>
                 <span>- Dotarcie do hotelu</span>
+                <span>- Spanie</span>
             </div>
             <div className="m-5 text-lg">
-                Piątek 27 - Sobota/Niedziela 28/29 Czerwca
+                pt. 27 - sob./nd. 28/29 Czerwca
             </div>
             <div className="m-2">
                 <div className="flex flex-col w-[300px] text-3xl font-black text-center border-1 rounded-xl bg-orange-600 p-5">
