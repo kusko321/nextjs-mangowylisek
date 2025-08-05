@@ -17,6 +17,7 @@ type magazyn = {
     cena_wystawienia: number;
     kupujacy: string;
     uwagi: string;
+    stan: number;
     zdjecie: string;
     zdjecie_dc: string;
     vinted_id: string;
@@ -32,6 +33,7 @@ export default function Page() {
         date: '',
         cena: '',
         uwagi: '',
+        stan: '',
         zdjecie: '',
     });
 
@@ -73,6 +75,7 @@ export default function Page() {
                     data_zakupu: formData.date,
                     cena_zakupu: parseFloat(formData.cena) || 0,
                     uwagi: formData.uwagi,
+                    stan: formData.stan,
                     czy_sprzedana: false,
                     zdjecie: formData.zdjecie,
                 });
@@ -85,6 +88,7 @@ export default function Page() {
                 data_zakupu: formData.date,
                 cena_zakupu: parseFloat(formData.cena) || 0,
                 uwagi: formData.uwagi,
+                stan: formData.stan,
                 czy_sprzedana: false,
                 zdjecie: formData.zdjecie,
             });
@@ -103,6 +107,7 @@ export default function Page() {
                 date: '',
                 cena: '',
                 uwagi: '',
+                stan: '',
                 zdjecie: '',
             });
         }
@@ -252,7 +257,14 @@ export default function Page() {
                             name="uwagi"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
                             onChange={handleChange}
-                        /><input
+                        />
+                        <input
+                            placeholder="Stan"
+                            name="stan"
+                            className="block bg-neutral-600 w-full mb-2 p-2 rounded"
+                            onChange={handleChange}
+                        />
+                        <input
                             placeholder="Zdjecie"
                             name="zdjecie"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
@@ -317,7 +329,9 @@ export default function Page() {
                                 case 'Data sprzedaży':
                                     sortBy('data_sprzedazy');
                                     break;
-
+                                case 'Stan':
+                                    sortBy('stan');
+                                    break;
                                 default:
                                     setSortedData([...data]); // przy "Brak" resetujemy do oryginału
                                     setSortConfig(null);
@@ -332,6 +346,7 @@ export default function Page() {
   <option>Cenie sprzedaży</option>
   <option>Cenie wystawienia</option>
   <option>Vinted ID</option>
+  <option>Stan</option>
   <option>Data kupna</option>
   <option>Data sprzedaży</option>
 </select>
@@ -390,6 +405,9 @@ export default function Page() {
                                 Uwagi
                             </th>
                             <th className="p-2 border-neutral-400 border">
+                                Stan
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
                                 Zdjecie
                             </th>
                             <th className="p-2 border-neutral-400 border">
@@ -414,6 +432,7 @@ export default function Page() {
                                 <td className="p-2 border-neutral-400 border">{row.vinted_id}</td>
                                 <td className="p-2 border-neutral-400 border">{row.kupujacy|| '❌'}</td>
                                 <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
+                                <td className="p-2 border-neutral-400 border">{row.stan}</td>
                                 <td className="p-2 border-neutral-400 max-w-[20px] border">{row.zdjecie ? (
                                     <a href={row.zdjecie} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
                                         Zobacz zdjęcie
@@ -535,6 +554,16 @@ export default function Page() {
                                                     value={edytowanyRekord.uwagi || ''}
                                                     onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, uwagi: e.target.value })}
                                                     placeholder="Uwagi"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Stan
+                                                <input
+                                                    type="number"
+                                                    step="1"
+                                                    value={edytowanyRekord.stan || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, stan: e.target.value })}
+                                                    placeholder="Stan"
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
                                             </span>
