@@ -34,6 +34,9 @@ export default function Page() {
         cena: '',
         uwagi: '',
         stan: '',
+        vinted_id: '',
+        zdjecie_dc: '',
+        cena_wystawienia: '',
         zdjecie: '',
     });
 
@@ -72,12 +75,15 @@ export default function Page() {
                     tytul: formData.tytul || 'nie ma',
                     tom: i,
                     kupiona_od: formData.kupiona_od,
+                    cena_wystawienia: formData.cena_wystawienia || 0,
                     data_zakupu: formData.date,
                     cena_zakupu: parseFloat(formData.cena) || 0,
                     uwagi: formData.uwagi,
                     stan: formData.stan,
+                    vinted_id: formData.vinted_id,
                     czy_sprzedana: false,
                     zdjecie: formData.zdjecie,
+                    zdjecie_dc: formData.zdjecie_dc,
                 });
             }
         } else {
@@ -85,12 +91,15 @@ export default function Page() {
                 tytul: formData.tytul || 'nie ma',
                 tom: start,
                 kupiona_od: formData.kupiona_od,
+                cena_wystawienia: formData.cena_wystawienia || 0,
                 data_zakupu: formData.date,
                 cena_zakupu: parseFloat(formData.cena) || 0,
                 uwagi: formData.uwagi,
                 stan: formData.stan,
+                vinted_id: formData.vinted_id,
                 czy_sprzedana: false,
                 zdjecie: formData.zdjecie,
+                zdjecie_dc: formData.zdjecie_dc,
             });
         }
 
@@ -108,6 +117,9 @@ export default function Page() {
                 cena: '',
                 uwagi: '',
                 stan: '',
+                vinted_id: '',
+                zdjecie_dc: '',
+                cena_wystawienia: '',
                 zdjecie: '',
             });
         }
@@ -253,6 +265,14 @@ export default function Page() {
                             onChange={handleChange}
                         />
                         <input
+                            placeholder="Cena wystawienia za 1 tom"
+                            name="cena_wystawienia"
+                            step="0.01"
+                            type="number"
+                            className="block bg-neutral-600 w-full mb-2 p-2 rounded"
+                            onChange={handleChange}
+                        />
+                        <input
                             placeholder="Uwagi"
                             name="uwagi"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
@@ -269,6 +289,18 @@ export default function Page() {
                         <input
                             placeholder="Zdjecie"
                             name="zdjecie"
+                            className="block bg-neutral-600 w-full mb-2 p-2 rounded"
+                            onChange={handleChange}
+                        />
+                        <input
+                            placeholder="Vinted ID"
+                            name="vinted_id"
+                            className="block bg-neutral-600 w-full mb-2 p-2 rounded"
+                            onChange={handleChange}
+                        />
+                        <input
+                            placeholder="Zdjecie dc"
+                            name="zdjecie_dc"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
                             onChange={handleChange}
                         />
