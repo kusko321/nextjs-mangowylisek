@@ -14,9 +14,12 @@ type magazyn = {
     czy_sprzedana: boolean;
     data_sprzedazy: string;
     cena_sprzedazy: number;
+    cena_wystawienia: number;
     kupujacy: string;
     uwagi: string;
     zdjecie: string;
+    zdjecie_dc: string;
+    vinted_id: string;
 };
 
 export default function Page() {
@@ -302,12 +305,19 @@ export default function Page() {
                                 case 'Cenie sprzedaży':
                                     sortBy('cena_sprzedazy');
                                     break;
+                                case 'Cenie wystawienia':
+                                    sortBy('cena_wystawienia');
+                                    break;
+                                    case 'Vinted ID':
+                                    sortBy('vinted_id');
+                                    break;
                                 case 'Data kupna':
                                     sortBy('data_zakupu');
                                     break;
                                 case 'Data sprzedaży':
                                     sortBy('data_sprzedazy');
                                     break;
+
                                 default:
                                     setSortedData([...data]); // przy "Brak" resetujemy do oryginału
                                     setSortConfig(null);
@@ -320,6 +330,8 @@ export default function Page() {
   <option>ID</option>
   <option>Cenie kupna</option>
   <option>Cenie sprzedaży</option>
+  <option>Cenie wystawienia</option>
+  <option>Vinted ID</option>
   <option>Data kupna</option>
   <option>Data sprzedaży</option>
 </select>
@@ -366,6 +378,12 @@ export default function Page() {
                                 Cena sprzedaży
                             </th>
                             <th className="p-2 border-neutral-400 border">
+                                Cena wystawienia
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Vinted ID
+                            </th>
+                            <th className="p-2 border-neutral-400 border">
                                 Kupujący
                             </th>
                             <th className="p-2 border-neutral-400 border">
@@ -374,6 +392,10 @@ export default function Page() {
                             <th className="p-2 border-neutral-400 border">
                                 Zdjecie
                             </th>
+                            <th className="p-2 border-neutral-400 border">
+                                Zdjecie Discord
+                            </th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -388,10 +410,19 @@ export default function Page() {
                                 <td className="p-2 border-neutral-400 border">{row.cena_zakupu} PLN</td>
                                 <td className="p-2 border-neutral-400 border">{row.data_sprzedazy || '❌'} </td>
                                 <td className="p-2 border-neutral-400 border">{row.cena_sprzedazy || '0'}  PLN</td>
+                                <td className="p-2 border-neutral-400 border">{row.cena_wystawienia || '0'}  PLN</td>
+                                <td className="p-2 border-neutral-400 border">{row.vinted_id}</td>
                                 <td className="p-2 border-neutral-400 border">{row.kupujacy|| '❌'}</td>
                                 <td className="p-2 border-neutral-400 border">{row.uwagi}</td>
                                 <td className="p-2 border-neutral-400 max-w-[20px] border">{row.zdjecie ? (
                                     <a href={row.zdjecie} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
+                                        Zobacz zdjęcie
+                                    </a>
+                                ) : (
+                                    'Brak'
+                                )}</td>
+                                <td className="p-2 border-neutral-400 max-w-[20px] border">{row.zdjecie_dc ? (
+                                    <a href={row.zdjecie_dc} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
                                         Zobacz zdjęcie
                                     </a>
                                 ) : (
@@ -450,6 +481,25 @@ export default function Page() {
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
                                             </span>
+                                            <span className="flex flex-col">Cena Wystawienia
+                                                <input
+                                                    type="number"
+                                                    step="0.01"
+                                                    value={edytowanyRekord.cena_wystawienia || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, cena_wystawienia: parseFloat(e.target.value) })}
+                                                    placeholder="Cena wystawienia"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Vinted ID
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.vinted_id || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, vinted_id: e.target.value })}
+                                                    placeholder="Vinted ID"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
                                             <span className="flex flex-col">Data Sprzedaży
                                                 <input
                                                     type="date"
@@ -459,6 +509,7 @@ export default function Page() {
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
                                             </span>
+
                                             <span className="flex flex-col">Cena Sprzedaży
                                                 <input
                                                     type="number"
@@ -493,6 +544,15 @@ export default function Page() {
                                                     value={edytowanyRekord.zdjecie || ''}
                                                     onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, zdjecie: e.target.value })}
                                                     placeholder="Link do zdjęcia"
+                                                    className="bg-neutral-700 p-2 rounded"
+                                                />
+                                            </span>
+                                            <span className="flex flex-col">Zdjecie na discordzie
+                                                <input
+                                                    type="text"
+                                                    value={edytowanyRekord.zdjecie_dc || ''}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, zdjecie_dc: e.target.value })}
+                                                    placeholder="Link do zdjęcia na dc"
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
                                             </span>
