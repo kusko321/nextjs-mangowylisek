@@ -261,6 +261,8 @@ export default function Page() {
                         <input
                             placeholder="Stan"
                             name="stan"
+                            step="1"
+                            type="number"
                             className="block bg-neutral-600 w-full mb-2 p-2 rounded"
                             onChange={handleChange}
                         />
@@ -562,7 +564,7 @@ export default function Page() {
                                                     type="number"
                                                     step="1"
                                                     value={edytowanyRekord.stan || ''}
-                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, stan: e.target.value })}
+                                                    onChange={(e) => setEdytowanyRekord({ ...edytowanyRekord, stan: parseFloat(e.target.value) })}
                                                     placeholder="Stan"
                                                     className="bg-neutral-700 p-2 rounded"
                                                 />
