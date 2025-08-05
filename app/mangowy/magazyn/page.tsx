@@ -367,7 +367,7 @@ export default function Page() {
                                     sortBy('stan');
                                     break;
                                 default:
-                                    setSortedData([...data]); // przy "Brak" resetujemy do oryginału
+                                    setSortedData([...data]); // przy "Brak" resetujemy do oryginał
                                     setSortConfig(null);
                             }
                         }}
